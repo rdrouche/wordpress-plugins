@@ -1,0 +1,185 @@
+/* ============================================================
+   RDR-IT Tools — Shortcode Widget Sidebar
+   ============================================================ */
+
+/* Conteneur */
+.rdrit-sc-widget {
+    font-size: .9rem;
+}
+
+.rdrit-sc-title {
+    font-size: .95rem;
+    font-weight: 700;
+    margin: 0 0 .85rem;
+    padding-bottom: .5rem;
+    border-bottom: 2px solid var(--rdrit-border, #e5e7eb);
+}
+
+/* Liste */
+.rdrit-sc-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: .6rem;
+}
+
+/* Carte */
+.rdrit-sc-card {
+    display: flex;
+    align-items: center;
+    gap: .7rem;
+    text-decoration: none;
+    color: inherit;
+    padding: .5rem .6rem;
+    border-radius: 8px;
+    border: 1px solid transparent;
+    transition: background .15s, border-color .15s, transform .12s;
+}
+
+.rdrit-sc-card:hover {
+    background: var(--rdrit-sc-hover-bg, #f3f4f6);
+    border-color: var(--rdrit-border, #e5e7eb);
+    transform: translateX(2px);
+    color: inherit;
+    text-decoration: none;
+}
+
+/* Vignette carrée 1:1 */
+.rdrit-sc-thumb {
+    flex-shrink: 0;
+    width: 64px;
+    height: 64px;
+    border-radius: 6px;
+    overflow: hidden;
+    background: #f3f4f6;
+}
+
+.rdrit-sc-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.rdrit-sc-noimg {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    background: linear-gradient(135deg, #1e293b, #334155);
+}
+
+/* Infos texte */
+.rdrit-sc-info {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: .18rem;
+}
+
+.rdrit-sc-cat {
+    font-size: .68rem;
+    font-weight: 700;
+    color: var(--rdrit-accent, #2271b1);
+    text-transform: uppercase;
+    letter-spacing: .04em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.rdrit-sc-name {
+    font-size: .82rem;
+    font-weight: 600;
+    line-height: 1.35;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.rdrit-sc-date {
+    font-size: .71rem;
+    color: #9ca3af;
+    margin-top: .1rem;
+}
+
+.rdrit-sc-empty {
+    color: #9ca3af;
+    font-size: .85rem;
+    font-style: italic;
+}
+
+/* ============================================================
+   MODE ASYNC — Skeleton + animation pulse
+   ============================================================ */
+.rdrit-sc-async-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: .6rem;
+}
+
+.rdrit-sc-skeleton-item {
+    display: flex;
+    align-items: center;
+    gap: .7rem;
+    padding: .5rem .6rem;
+}
+
+.rdrit-sc-skeleton-thumb {
+    flex-shrink: 0;
+    width: 64px;
+    height: 64px;
+    border-radius: 6px;
+}
+
+.rdrit-sc-skeleton-lines {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: .4rem;
+}
+
+/* Barres skeleton */
+.rdrit-pulse {
+    height: 12px;
+    border-radius: 4px;
+    background: linear-gradient(90deg, #e5e7eb 25%, #f3f4f6 50%, #e5e7eb 75%);
+    background-size: 200% 100%;
+    animation: rdrit-pulse 1.4s ease-in-out infinite;
+}
+.rdrit-pulse--xs  { width: 45%; height: 10px; }
+.rdrit-pulse--sm  { width: 35%; height: 10px; }
+.rdrit-pulse--md  { width: 90%; }
+
+.rdrit-sc-skeleton-thumb.rdrit-pulse {
+    width: 64px;
+    height: 64px;
+}
+
+@keyframes rdrit-pulse {
+    0%   { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+
+/* ============================================================
+   DARK MODE
+   ============================================================ */
+[data-theme="dark"] .rdrit-sc-card:hover {
+    --rdrit-sc-hover-bg: #1f2937;
+    --rdrit-border: #374151;
+}
+[data-theme="dark"] .rdrit-pulse,
+[data-theme="dark"] .rdrit-sc-skeleton-thumb {
+    background: linear-gradient(90deg, #374151 25%, #4b5563 50%, #374151 75%);
+    background-size: 200% 100%;
+    animation: rdrit-pulse 1.4s ease-in-out infinite;
+}
+[data-theme="dark"] .rdrit-sc-thumb {
+    background: #374151;
+}

@@ -1,0 +1,331 @@
+/**
+ * RDR-IT Glossaire — Styles front-end
+ * Tooltips + switch toggle — compatible dark/light (data-theme)
+ */
+
+/* ============================================================
+   VARIABLES LOCALES (hérite du thème RDR-IT si disponible)
+   ============================================================ */
+:root {
+    --rdrg-accent:       var(--rdr-accent,        #2ea8ff);
+    --rdrg-bg:           var(--rdr-bg-card,        #1c2128);
+    --rdrg-text:         var(--rdr-text-primary,   #e6edf3);
+    --rdrg-text-sub:     var(--rdr-text-secondary, #8b949e);
+    --rdrg-border:       var(--rdr-border,         rgba(255,255,255,0.1));
+    --rdrg-shadow:       0 8px 24px rgba(0,0,0,0.45);
+    --rdrg-radius:       10px;
+    --rdrg-switch-on:    var(--rdr-accent, #2ea8ff);
+    --rdrg-switch-off:   #555;
+}
+
+[data-theme="light"] {
+    --rdrg-bg:       #ffffff;
+    --rdrg-text:     #1a1a2e;
+    --rdrg-text-sub: #4a5568;
+    --rdrg-border:   rgba(0,0,0,0.1);
+    --rdrg-shadow:   0 4px 20px rgba(0,0,0,0.15);
+    --rdrg-switch-on:#1e73be;
+    --rdrg-switch-off:#aaa;
+}
+
+/* ============================================================
+   TERME DANS LE CONTENU
+   ============================================================ */
+.rdrg-term {
+    cursor: help;
+    position: relative;
+    /* Style "underline" par défaut — surchargeable via admin */
+    border-bottom: 1.5px dashed var(--rdrg-accent);
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.2s, border-color 0.2s;
+}
+
+.rdrg-term:hover,
+.rdrg-term:focus {
+    color: var(--rdrg-accent);
+    outline: none;
+    border-bottom-style: solid;
+}
+
+/* Styles alternatifs */
+body[data-rdrg-hl="bg"] .rdrg-term {
+    border-bottom: none;
+    background: rgba(46, 168, 255, 0.12);
+    border-radius: 3px;
+    padding: 0 2px;
+}
+body[data-rdrg-hl="dotted"] .rdrg-term {
+    border-bottom: 1px dotted var(--rdrg-accent);
+}
+body[data-rdrg-hl="none"] .rdrg-term {
+    border-bottom: none;
+}
+
+/* ============================================================
+   SWITCH TOGGLE (sous le titre)
+   ============================================================ */
+.rdrg-switch-wrap {
+    margin: 6px 0 20px 0;
+    display: flex;
+    align-items: center;
+}
+
+.rdrg-inline-switch {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    user-select: none;
+    font-size: 13px;
+    color: var(--rdrg-text-sub);
+    transition: color 0.2s;
+}
+
+.rdrg-inline-switch:hover {
+    color: var(--rdrg-text);
+}
+
+/* Masquer la checkbox native */
+.rdrg-inline-switch input[type="checkbox"] {
+    position: absolute;
+    width: 1px; height: 1px;
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Track */
+.rdrg-track {
+    position: relative;
+    width: 40px;
+    height: 22px;
+    background: var(--rdrg-switch-off);
+    border-radius: 22px;
+    flex-shrink: 0;
+    transition: background 0.25s;
+}
+
+.rdrg-inline-switch input:checked ~ .rdrg-track {
+    background: var(--rdrg-switch-on);
+}
+
+/* Thumb */
+.rdrg-thumb {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 16px;
+    height: 16px;
+    background: #fff;
+    border-radius: 50%;
+    transition: transform 0.25s;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+}
+
+.rdrg-inline-switch input:checked ~ .rdrg-track .rdrg-thumb {
+    transform: translateX(18px);
+}
+
+/* Focus visible (accessibilité) */
+.rdrg-inline-switch input:focus-visible ~ .rdrg-track {
+    outline: 2px solid var(--rdrg-accent);
+    outline-offset: 2px;
+}
+
+/* Label animé */
+.rdrg-label {
+    font-size: 12px;
+    line-height: 1.4;
+    transition: color 0.2s;
+}
+
+/* ============================================================
+   TOOLTIP
+   ============================================================ */
+.rdrg-tooltip {
+    position: absolute;
+    z-index: 99999;
+    pointer-events: none;
+    opacity: 0;
+    transform: translateY(6px);
+    transition: opacity 0.18s ease, transform 0.18s ease;
+    /* Eviter un flash au repositionnement */
+    visibility: hidden;
+}
+
+.rdrg-tooltip.rdrg-tooltip-visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+    visibility: visible;
+}
+
+.rdrg-tooltip-inner {
+    position: relative;
+    background: var(--rdrg-bg);
+    border: 1px solid var(--rdrg-border);
+    border-radius: var(--rdrg-radius);
+    box-shadow: var(--rdrg-shadow);
+    padding: 14px 16px 12px;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    width: 360px;
+    max-width: 90vw;
+}
+
+/* Petite flèche en haut */
+.rdrg-tooltip:not(.rdrg-tooltip-below) .rdrg-tooltip-inner::before {
+    content: '';
+    position: absolute;
+    bottom: -7px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0; height: 0;
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    border-top: 7px solid var(--rdrg-bg);
+    filter: drop-shadow(0 1px 1px rgba(0,0,0,0.2));
+}
+
+/* Flèche en bas quand tooltip est au-dessous */
+.rdrg-tooltip.rdrg-tooltip-below .rdrg-tooltip-inner::before {
+    content: '';
+    position: absolute;
+    top: -7px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0; height: 0;
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    border-bottom: 7px solid var(--rdrg-bg);
+}
+
+/* Titre */
+.rdrg-tooltip-title {
+    font-weight: 700;
+    font-size: 13px;
+    color: var(--rdrg-accent);
+    margin-bottom: 6px;
+    letter-spacing: 0.01em;
+    text-transform: uppercase;
+    font-size: 11px;
+}
+
+/* Définition */
+.rdrg-tooltip-def {
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--rdrg-text);
+    margin-bottom: 8px;
+    max-height: 180px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--rdrg-border) transparent;
+}
+
+/* Zone boutons du tooltip */
+.rdrg-tooltip-actions {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-top: 2px;
+}
+
+/* Lien */
+.rdrg-tooltip-link {
+    display: inline-block;
+    font-size: 12px;
+    color: var(--rdrg-accent) !important;
+    text-decoration: none !important;
+    border: 1px solid var(--rdrg-accent);
+    border-radius: 4px;
+    padding: 3px 8px;
+    margin-top: 2px;
+    transition: background 0.15s, color 0.15s;
+}
+
+.rdrg-tooltip-link:hover {
+    background: var(--rdrg-accent) !important;
+    color: #fff !important;
+}
+
+/* Bouton "Ouvrir le lien" — accent secondaire pour le distinguer de "En savoir plus" */
+.rdrg-tooltip-open-link {
+    color: var(--rdrg-text-sub) !important;
+    border-color: var(--rdrg-border) !important;
+}
+
+.rdrg-tooltip-open-link:hover {
+    background: var(--rdrg-text-sub) !important;
+    color: var(--rdrg-bg) !important;
+    border-color: var(--rdrg-text-sub) !important;
+}
+
+/* Bouton fermer */
+.rdrg-tooltip-close {
+    position: absolute;
+    top: 6px;
+    right: 8px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    line-height: 1;
+    color: var(--rdrg-text-sub);
+    padding: 2px 4px;
+    border-radius: 4px;
+    transition: color 0.15s, background 0.15s;
+}
+
+.rdrg-tooltip-close:hover {
+    color: var(--rdrg-text);
+    background: var(--rdrg-border);
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 600px) {
+    .rdrg-tooltip {
+        width: calc(100vw - 24px) !important;
+        left: 12px !important;
+    }
+
+    .rdrg-tooltip-inner::before {
+        display: none;
+    }
+}
+
+/* ============================================================
+   ANIMATION ENTRÉE TERMES (optionnelle, légère)
+   ============================================================ */
+@keyframes rdrg-pulse {
+    0%   { border-color: var(--rdrg-accent); }
+    50%  { border-color: transparent; }
+    100% { border-color: var(--rdrg-accent); }
+}
+
+/* Terme qui est aussi un lien hypertexte :
+   on garde l'apparence de lien + on ajoute l'indicateur tooltip */
+a.rdrg-term,
+a.rdrg-term-link {
+    border-bottom: 1.5px dashed var(--rdrg-accent) !important;
+    cursor: help !important;
+}
+
+a.rdrg-term:hover,
+a.rdrg-term-link:hover {
+    border-bottom-style: solid !important;
+}
+
+/* ============================================================
+   PRINT — masquer les tooltips
+   ============================================================ */
+@media print {
+    .rdrg-switch-wrap,
+    .rdrg-tooltip { display: none !important; }
+    .rdrg-term {
+        border-bottom: none;
+        cursor: default;
+    }
+}

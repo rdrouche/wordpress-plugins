@@ -1,0 +1,48 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "wp-tuto-blocks/spoiler",
+	"version": "1.0.0",
+	"title": "Spoiler / Solution cachée",
+	"category": "text",
+	"icon": "hidden",
+	"description": "Bloc dont le contenu est masqué et révélé au clic.",
+	"keywords": [
+		"spoiler",
+		"solution",
+		"tp",
+		"formation"
+	],
+	"textdomain": "wp-tuto-blocks",
+	"attributes": {
+		"label": {
+			"type": "string",
+			"default": "Voir la solution"
+		},
+		"labelOpen": {
+			"type": "string",
+			"default": "Masquer la solution"
+		},
+		"style": {
+			"type": "string",
+			"default": "info",
+			"enum": [
+				"info",
+				"tip",
+				"success",
+				"warning",
+				"danger"
+			]
+		},
+		"startOpen": {
+			"type": "boolean",
+			"default": false
+		}
+	},
+	"supports": {
+		"html": false
+	},
+	"editorScript": "file:./index.build.js",
+	"editorStyle": "file:./editor.css",
+	"style": "file:./style.css"
+}

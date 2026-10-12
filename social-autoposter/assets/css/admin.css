@@ -1,0 +1,313 @@
+/* ─── Social AutoPoster – Admin Styles ─────────────────────────────────────── */
+
+:root {
+    --sap-blue:     #2271b1;
+    --sap-li:       #0a66c2;
+    --sap-fb:       #1877f2;
+    --sap-green:    #00a32a;
+    --sap-red:      #d63638;
+    --sap-orange:   #dba617;
+    --sap-bg:       #f6f7f7;
+    --sap-border:   #c3c4c7;
+    --sap-radius:   6px;
+}
+
+/* ── Wrap général ─────────────────────────────────────────────────────────── */
+.sap-wrap h1 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.sap-wrap h1 .dashicons {
+    font-size: 26px;
+    color: var(--sap-blue);
+}
+
+/* ── Onglets (page réglages) ─────────────────────────────────────────────── */
+.sap-tabs {
+    display: flex;
+    gap: 4px;
+    border-bottom: 2px solid var(--sap-border);
+    margin-bottom: 24px;
+    margin-top: 16px;
+}
+.sap-tab {
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    color: #50575e;
+    border-radius: var(--sap-radius) var(--sap-radius) 0 0;
+    border: 2px solid transparent;
+    border-bottom: none;
+    cursor: pointer;
+    transition: background .15s, color .15s;
+}
+.sap-tab:hover,
+.sap-tab.active {
+    background: #fff;
+    color: var(--sap-blue);
+    border-color: var(--sap-border);
+    border-bottom-color: #fff;
+    margin-bottom: -2px;
+}
+.sap-tab-content { display: none; }
+.sap-tab-content.active { display: block; }
+
+/* ── Test connexion ─────────────────────────────────────────────────────── */
+.sap-test-result {
+    margin-left: 12px;
+    font-style: italic;
+    font-weight: 600;
+}
+.sap-test-result.ok  { color: var(--sap-green); }
+.sap-test-result.err { color: var(--sap-red); }
+
+/* ── File d'attente (table) ──────────────────────────────────────────────── */
+.sap-queue-table { margin-top: 16px; }
+.sap-queue-table th { background: #f0f0f1; }
+.sap-badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+}
+.sap-badge-pending   { background: #fff9e6; color: var(--sap-orange); border: 1px solid var(--sap-orange); }
+.sap-badge-published { background: #e9f8ee; color: var(--sap-green);  border: 1px solid var(--sap-green); }
+.sap-badge-failed    { background: #fde8e8; color: var(--sap-red);    border: 1px solid var(--sap-red); }
+.sap-error-detail {
+    display: block;
+    color: var(--sap-red);
+    font-size: 11px;
+    cursor: help;
+    margin-top: 3px;
+    line-height: 1.4;
+}
+.sap-action-cell {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    align-items: flex-start;
+}
+.sap-msg-cell { max-width: 300px; }
+.sap-msg-preview { color: #3c434a; }
+
+/* ── Sections de mode LinkedIn ──────────────────────────────────────────── */
+.sap-mode-section {
+    display: none;
+    margin-top: 8px;
+    padding: 16px;
+    border: 1px solid var(--sap-border);
+    border-radius: var(--sap-radius);
+    background: var(--sap-bg);
+}
+.sap-mode-section.sap-mode-active { display: block; }
+
+
+#sap-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.55);
+    z-index: 100000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#sap-modal {
+    background: #fff;
+    border-radius: 10px;
+    width: min(680px, 90vw);
+    max-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 20px 60px rgba(0,0,0,.3);
+    overflow: hidden;
+}
+#sap-modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--sap-border);
+    background: var(--sap-bg);
+    gap: 12px;
+}
+#sap-modal-header > div {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+}
+#sap-modal-network-icon { font-size: 20px; }
+#sap-modal-title { font-size: 14px; }
+#sap-modal-close {
+    background: none;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    color: #646970;
+    padding: 4px 8px;
+    border-radius: 4px;
+    line-height: 1;
+    transition: background .12s, color .12s;
+}
+#sap-modal-close:hover { background: #e0e0e0; color: #1d2327; }
+#sap-modal-body {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px;
+    margin: 0;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    font-size: 14px;
+    line-height: 1.75;
+    white-space: pre-wrap;
+    word-break: break-word;
+    color: #1d2327;
+    background: #fff;
+    border: none;
+}
+#sap-modal-footer {
+    padding: 14px 20px;
+    border-top: 1px solid var(--sap-border);
+    background: var(--sap-bg);
+    display: flex;
+    gap: 8px;
+    justify-content: flex-end;
+}
+#sap-modal-copy.copied { color: var(--sap-green); border-color: var(--sap-green); }
+
+/* ── Meta box ──────────────────────────────────────────────────────────── */
+.sap-metabox { font-size: 13px; }
+.sap-metabox-section { margin-bottom: 14px; }
+.sap-label { display: block; margin-bottom: 5px; color: #1d2327; }
+
+/* Boutons réseau */
+.sap-network-btns {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+.sap-net-btn {
+    flex: 1;
+    padding: 8px 6px;
+    border: 2px solid var(--sap-border);
+    background: #fff;
+    border-radius: var(--sap-radius);
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    color: #50575e;
+    transition: all .15s;
+}
+.sap-net-btn:hover { border-color: var(--sap-blue); color: var(--sap-blue); }
+.sap-net-btn.active {
+    background: var(--sap-blue);
+    border-color: var(--sap-blue);
+    color: #fff;
+}
+
+/* Barre de formatage */
+.sap-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    background: var(--sap-bg);
+    border: 1px solid var(--sap-border);
+    border-bottom: none;
+    padding: 6px 8px;
+    border-radius: var(--sap-radius) var(--sap-radius) 0 0;
+    align-items: center;
+    position: relative;
+}
+.sap-fmt-btn {
+    padding: 4px 8px;
+    background: #fff;
+    border: 1px solid var(--sap-border);
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    color: #1d2327;
+    line-height: 1.6;
+    transition: background .12s;
+}
+.sap-fmt-btn:hover { background: #e8e8e8; }
+.sap-emoji-trigger {
+    cursor: pointer;
+    font-size: 16px;
+    padding: 2px 4px;
+    line-height: 1;
+    border-radius: 4px;
+    transition: background .12s;
+}
+.sap-emoji-trigger:hover { background: #e8e8e8; }
+.sap-emoji-picker {
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 0;
+    background: #fff;
+    border: 1px solid var(--sap-border);
+    border-radius: var(--sap-radius);
+    padding: 8px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    z-index: 999;
+    box-shadow: 0 4px 12px rgba(0,0,0,.12);
+}
+.sap-emoji {
+    font-size: 18px;
+    cursor: pointer;
+    padding: 3px;
+    border-radius: 4px;
+    transition: background .12s;
+}
+.sap-emoji:hover { background: var(--sap-bg); }
+
+/* Textarea message */
+#sap_message {
+    border-radius: 0 0 var(--sap-radius) var(--sap-radius) !important;
+    resize: vertical;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    font-size: 13px;
+    line-height: 1.6;
+}
+.sap-hint {
+    font-size: 11px;
+    color: #646970;
+    margin: 4px 0 0;
+}
+.sap-hint code {
+    background: var(--sap-bg);
+    padding: 1px 4px;
+    border-radius: 3px;
+    font-size: 11px;
+}
+
+/* Historique */
+.sap-history {
+    border-top: 1px solid var(--sap-border);
+    padding-top: 10px;
+    margin-top: 4px;
+}
+.sap-history-item {
+    font-size: 11px;
+    color: #646970;
+    padding: 2px 0;
+}
+
+/* Template textarea dans les réglages */
+.sap-template-field {
+    font-family: 'Courier New', monospace;
+    font-size: 13px;
+    min-height: 180px;
+}
+
+/* Bouton planifier */
+#sap_schedule_btn {
+    margin-top: 4px;
+    height: 36px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: .3px;
+}

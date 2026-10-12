@@ -1,0 +1,223 @@
+/**
+ * RDR-IT Suite — Module Mailer — Styles admin
+ * Complète admin.css (variables --rdr-* disponibles).
+ */
+
+/* ── Onglets principaux ─────────────────────────────────────────────────── */
+.rdr-tabs {
+    display: flex;
+    gap: 4px;
+    border-bottom: 1px solid var(--rdr-border);
+    margin-bottom: 24px;
+}
+
+.rdr-tab {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 18px;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid transparent;
+    color: var(--rdr-text-secondary);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: color .2s, border-color .2s;
+    margin-bottom: -1px;
+}
+.rdr-tab:hover  { color: var(--rdr-text-primary); }
+.rdr-tab.is-active {
+    color: var(--rdr-accent);
+    border-bottom-color: var(--rdr-accent);
+    font-weight: 600;
+}
+
+/* Badge mode dans l'onglet Sélection */
+.rdr-tab-badge {
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 7px;
+    border-radius: 4px;
+    letter-spacing: .5px;
+    text-transform: uppercase;
+}
+.rdr-tab-badge--php     { background: rgba(139,148,158,.15); color: var(--rdr-text-secondary); }
+.rdr-tab-badge--smtp    { background: rgba(46,168,255,.15);  color: var(--rdr-accent); }
+.rdr-tab-badge--mailjet { background: rgba(0,229,192,.15);   color: var(--rdr-accent-2); }
+
+/* ── Sous-onglets configurations ────────────────────────────────────────── */
+.rdr-subtabs {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.rdr-subtab {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 14px;
+    background: var(--rdr-bg-card);
+    border: 1px solid var(--rdr-border);
+    border-radius: 6px;
+    color: var(--rdr-text-secondary);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all .2s;
+}
+.rdr-subtab:hover { border-color: var(--rdr-border-strong); color: var(--rdr-text-primary); }
+.rdr-subtab.is-active {
+    background: var(--rdr-bg-accent);
+    border-color: var(--rdr-accent);
+    color: var(--rdr-accent);
+    font-weight: 600;
+}
+
+/* Pastille "mode actif" sur le sous-onglet */
+.rdr-subtab__active-dot {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--rdr-accent-2);
+    flex-shrink: 0;
+}
+
+/* Statut configuré/vide */
+.rdr-subtab__status {
+    font-size: 11px;
+    font-weight: 700;
+    margin-left: 2px;
+}
+.rdr-subtab__status.is-ok    { color: var(--rdr-accent-2); }
+.rdr-subtab__status.is-empty { color: var(--rdr-text-muted); }
+
+/* ── Cards mode (panneau Sélection) ─────────────────────────────────────── */
+.rdr-mode-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-top: 8px;
+}
+
+@media (max-width: 700px) {
+    .rdr-mode-cards { grid-template-columns: 1fr; }
+}
+
+.rdr-mode-card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    padding: 16px 18px;
+    background: var(--rdr-bg-card);
+    border: 2px solid var(--rdr-border);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: border-color .2s, background .2s;
+    position: relative;
+}
+
+.rdr-mode-card input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.rdr-mode-card:hover {
+    border-color: var(--rdr-border-strong);
+}
+
+.rdr-mode-card.is-active {
+    border-color: var(--rdr-accent);
+    background: var(--rdr-bg-accent);
+}
+
+.rdr-mode-card.is-unconfigured {
+    opacity: .7;
+}
+
+.rdr-mode-card__icon {
+    font-size: 24px;
+    line-height: 1;
+}
+
+.rdr-mode-card__name {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--rdr-text-primary);
+}
+
+.rdr-mode-card__badge {
+    font-size: 11px;
+}
+
+.rdr-mode-card__detail {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--rdr-text-muted);
+    word-break: break-all;
+}
+
+/* ── Résultat test ──────────────────────────────────────────────────────── */
+.rdr-test-result {
+    margin-top: 10px;
+    font-size: 13px;
+    min-height: 24px;
+}
+
+.rdr-last-test {
+    margin-top: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    font-size: 12px;
+    color: var(--rdr-text-secondary);
+}
+
+.rdr-last-test__meta { color: var(--rdr-text-secondary); }
+.rdr-last-test__error { color: #e53e3e; }
+
+/* ── Champs inline (port + encryption) ─────────────────────────────────── */
+.rdr-field--row {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    align-items: flex-end;
+}
+.rdr-field--row > div { flex: 1; min-width: 120px; }
+
+.rdr-input--sm { max-width: 100px; }
+
+/* ── Actions ────────────────────────────────────────────────────────────── */
+.rdr-field--actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 8px;
+}
+
+/* ── Message save ───────────────────────────────────────────────────────── */
+.rdr-save-msg {
+    display: none;
+    font-size: 13px;
+    font-weight: 500;
+}
+.rdr-save-msg--success { color: var(--rdr-accent-2); }
+.rdr-save-msg--error   { color: #e53e3e; }
+
+/* ── Sous-panneau ───────────────────────────────────────────────────────── */
+.rdr-subpanel { animation: rdrFadeIn .15s ease; }
+
+@keyframes rdrFadeIn {
+    from { opacity: 0; transform: translateY(4px); }
+    to   { opacity: 1; transform: translateY(0); }
+}

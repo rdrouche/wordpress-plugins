@@ -1,0 +1,26 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "wp-tuto-blocks/markdown",
+	"version": "1.0.0",
+	"title": "Markdown",
+	"category": "text",
+	"icon": "editor-code",
+	"description": "Collez du Markdown, il est rendu en HTML.",
+	"keywords": ["markdown", "md", "texte", "code"],
+	"textdomain": "wp-tuto-blocks",
+	"attributes": {
+		"content": {
+			"type": "string",
+			"default": ""
+		}
+	},
+	"supports": {
+		"html": false,
+		"spacing": { "margin": true }
+	},
+	"render": "file:./render.php",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./editor.css",
+	"style": "file:./style.css"
+}

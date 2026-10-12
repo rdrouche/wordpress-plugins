@@ -1,0 +1,10 @@
+{
+  "slug":        "rdr-mailer",
+  "name":        "Mailer",
+  "description": "Configuration SMTP / Mailjet / PHP natif pour wp_mail(). Test d'envoi intégré.",
+  "version":     "1.4.0",
+  "author":      "Romain Drouche",
+  "icon":        "✉️",
+  "entry":       "rdr-mailer.php",
+  "min_version": "1.2.0"
+}

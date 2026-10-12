@@ -1,0 +1,181 @@
+/*
+ * RDR-IT Quiz Modal — quiz-modal.css v1.0
+ * Chargé uniquement si un bouton modal est présent dans la page.
+ * Variables héritées de --rdr-* du thème.
+ */
+
+/* ── Overlay ── */
+.rdr-modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    background: rgba(0, 0, 0, .65);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    box-sizing: border-box;
+    /* Transition ouverture/fermeture */
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .25s ease;
+}
+.rdr-modal-overlay[aria-hidden="false"] {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* ── Boîte modale ── */
+.rdr-modal-box {
+    position: relative;
+    width: 100%;
+    max-width: 720px;
+    max-height: 90vh;
+    background: var(--rdr-bg-surface, #1c2128);
+    border: 1px solid var(--rdr-border-strong, rgba(255,255,255,.15));
+    border-radius: 14px;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, .5);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transform: translateY(20px) scale(.97);
+    transition: transform .25s ease;
+}
+.rdr-modal-overlay[aria-hidden="false"] .rdr-modal-box {
+    transform: translateY(0) scale(1);
+}
+
+/* ── Bouton fermer ── */
+.rdr-modal-close {
+    position: absolute;
+    top: .75rem;
+    right: .75rem;
+    z-index: 10;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 1px solid var(--rdr-border-strong, rgba(255,255,255,.2));
+    background: var(--rdr-bg-card, #161b22);
+    color: var(--rdr-text-secondary, #8b949e);
+    font-size: 1rem;
+    line-height: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background .15s, color .15s, border-color .15s;
+}
+.rdr-modal-close:hover {
+    background: var(--rdr-accent, #2ea8ff);
+    color: #fff;
+    border-color: var(--rdr-accent, #2ea8ff);
+}
+
+/* ── Corps scrollable ── */
+.rdr-modal-body {
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 1.5rem 1.75rem 1.75rem;
+    flex: 1;
+    /* Scrollbar discrète */
+    scrollbar-width: thin;
+    scrollbar-color: var(--rdr-border-strong, rgba(255,255,255,.15)) transparent;
+}
+.rdr-modal-body::-webkit-scrollbar { width: 5px; }
+.rdr-modal-body::-webkit-scrollbar-track { background: transparent; }
+.rdr-modal-body::-webkit-scrollbar-thumb {
+    background: var(--rdr-border-strong, rgba(255,255,255,.15));
+    border-radius: 999px;
+}
+
+/* ── Loading ── */
+.rdr-modal-loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 200px;
+}
+
+/* ── Erreur ── */
+.rdr-modal-error {
+    text-align: center;
+    padding: 2rem;
+    color: var(--rdr-text-secondary, #8b949e);
+    font-style: italic;
+}
+
+/* ── Boutons d'ouverture de modal ── */
+
+/* Variante button (défaut) */
+.rdr-quiz-modal-btn {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    padding: 9px 20px !important;
+    border-radius: 7px !important;
+    font-family: 'DM Sans', sans-serif !important;
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    cursor: pointer !important;
+    text-decoration: none !important;
+    background: var(--rdr-accent, #2ea8ff) !important;
+    color: #fff !important;
+    border: 1.5px solid var(--rdr-accent, #2ea8ff) !important;
+    transition: background .15s, border-color .15s, transform .15s, box-shadow .15s !important;
+}
+.rdr-quiz-modal-btn:hover {
+    background: var(--rdr-accent-2, #00e5c0) !important;
+    border-color: var(--rdr-accent-2, #00e5c0) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 4px 14px rgba(46,168,255,.3) !important;
+    color: #fff !important;
+    text-decoration: none !important;
+}
+
+/* Variante outline */
+.rdr-quiz-modal-btn.button-outline {
+    background: transparent !important;
+    color: var(--rdr-accent, #2ea8ff) !important;
+}
+.rdr-quiz-modal-btn.button-outline:hover {
+    background: var(--rdr-accent, #2ea8ff) !important;
+    color: #fff !important;
+}
+
+/* ── Dans la card liste : bouton modal ── */
+.rdr-quiz-card .rdr-quiz-modal-btn {
+    display: block !important;
+    width: 100% !important;
+    text-align: center !important;
+    margin-top: .5rem !important;
+}
+
+/* ── Responsive ── */
+@media (max-width: 640px) {
+    .rdr-modal-box {
+        max-height: 95vh;
+        border-radius: 12px 12px 0 0;
+        margin-top: auto;
+    }
+    .rdr-modal-overlay {
+        align-items: flex-end;
+        padding: 0;
+    }
+    .rdr-modal-body {
+        padding: 1.25rem 1rem 1.5rem;
+    }
+}
+
+/* ── Mode clair ── */
+[data-theme="light"] .rdr-modal-box {
+    background: var(--rdr-bg-surface, #fff);
+    border-color: var(--rdr-border-strong, rgba(0,0,0,.15));
+    box-shadow: 0 24px 60px rgba(0, 0, 0, .2);
+}
+[data-theme="light"] .rdr-modal-close {
+    background: var(--rdr-bg-card, #f5f5f5);
+    border-color: var(--rdr-border, rgba(0,0,0,.1));
+    color: var(--rdr-text-secondary, #4a5568);
+}

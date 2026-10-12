@@ -1,0 +1,57 @@
+# Généré par tools.rdr-it.com
+
+# ─── Node.js ───
+node_modules/
+npm-debug.log*
+yarn-error.log
+.pnpm-store/
+dist/
+build/
+.env
+.env.local
+
+# ─── PHP ───
+/vendor/
+composer.lock
+.env
+.env.*
+*.log
+/storage/*.key
+
+# ─── Docker ───
+docker-compose.override.yml
+.env
+*.env
+
+# ─── IDE/Éditeurs ───
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# ─── OS ───
+.DS_Store
+Thumbs.db
+desktop.ini
+*.tmp
+._*
+
+# ─── Logs/temp ───
+*.log
+logs/
+tmp/
+temp/
+*.pid
+*.seed
+
+# ─── Secrets ───
+*.pem
+*.key
+*.p12
+*.pfx
+secrets/
+.env.production
+credentials.json

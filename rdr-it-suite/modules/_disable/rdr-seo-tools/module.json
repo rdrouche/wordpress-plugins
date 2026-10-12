@@ -1,0 +1,10 @@
+{
+  "slug":        "rdr-seo-tools",
+  "name":        "SEO Tools",
+  "description": "Enrichissements SEO avancés : meta automatiques, Open Graph, redirections 301 gérées depuis l'admin.",
+  "version":     "1.0.0",
+  "author":      "Romain Drouche",
+  "icon":        "🔍",
+  "entry":       "rdr-seo-tools.php",
+  "min_version": "1.0.0"
+}

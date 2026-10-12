@@ -1,0 +1,6 @@
+.wp-tuto-markdown-editor { border: 1px solid #ddd; border-radius: 4px; overflow: hidden; }
+.wp-tuto-markdown-editor__tabs { display: flex; background: #f6f7f7; border-bottom: 1px solid #ddd; }
+.wp-tuto-markdown-editor__tab { flex: 1; padding: 8px; background: none; border: none; cursor: pointer; font-size: 13px; color: #555; }
+.wp-tuto-markdown-editor__tab.is-active { background: #fff; color: #1e1e1e; font-weight: 600; border-bottom: 2px solid #007cba; }
+.wp-tuto-markdown-editor__textarea { width: 100%; padding: 12px; font-family: monospace; font-size: 13px; border: none; resize: vertical; min-height: 220px; display: block; box-sizing: border-box; }
+.wp-tuto-markdown-editor__preview { padding: 16px; min-height: 80px; }

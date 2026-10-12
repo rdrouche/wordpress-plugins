@@ -1,0 +1,479 @@
+/**
+ * RDR-IT Glossaire — Pages /glossaire/ et /glossaire/{slug}/
+ * Intégré au thème RDR-IT GeneratePress — variables CSS natives
+ */
+
+/* ══════════════════════════════════════════════════════════════
+   PAGE INDEX [rdrg_glossaire]
+══════════════════════════════════════════════════════════════ */
+
+.rdrg-glossaire-shortcode {
+    margin: 0;
+}
+
+/* ── En-tête : compteur + recherche ─────────────────────────── */
+.rdrg-sc-header {
+    margin-bottom: 24px;
+}
+
+.rdrg-hero-sub {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    color: var(--rdr-text-secondary) !important;
+    margin: 0 0 16px !important;
+    letter-spacing: 0.01em;
+}
+
+/* ── Barre de recherche — style natif thème ─────────────────── */
+.rdrg-search-wrap {
+    position: relative;
+    max-width: 540px;
+}
+
+.rdrg-search-input {
+    width: 100%;
+    padding: 11px 44px 11px 18px;
+    background: var(--rdr-bg-card) !important;
+    border: 1px solid var(--rdr-border-strong) !important;
+    border-radius: 8px !important;
+    color: var(--rdr-text-primary) !important;
+    font-size: 14px;
+    font-family: 'DM Sans', sans-serif;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    box-sizing: border-box;
+}
+
+.rdrg-search-input:focus {
+    border-color: var(--rdr-accent) !important;
+    box-shadow: 0 0 0 3px var(--rdr-bg-accent) !important;
+}
+
+.rdrg-search-input::placeholder {
+    color: var(--rdr-text-muted) !important;
+}
+
+.rdrg-search-icon {
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--rdr-text-muted);
+    font-size: 15px;
+    pointer-events: none;
+    line-height: 1;
+}
+
+.rdrg-search-count {
+    display: block;
+    font-size: 12px;
+    color: var(--rdr-text-secondary);
+    margin-top: 6px;
+    min-height: 16px;
+}
+
+/* ── Navigation alphabétique ─────────────────────────────────── */
+.rdrg-alpha-nav-inline {
+    margin: 0 0 28px;
+    padding: 0;
+    background: none;
+    border: none;
+    position: static;
+}
+
+.rdrg-alpha-inner {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    padding: 0;
+    max-width: none;
+}
+
+.rdrg-alpha-btn {
+    min-width: 32px;
+    height: 32px;
+    padding: 0 6px;
+    background: var(--rdr-bg-card);
+    border: 1px solid var(--rdr-border);
+    border-radius: 6px;
+    color: var(--rdr-text-secondary);
+    font-size: 12px;
+    font-weight: 600;
+    font-family: 'JetBrains Mono', monospace;
+    cursor: pointer;
+    transition: background 0.15s, border-color 0.15s, color 0.15s;
+    line-height: 1;
+}
+
+.rdrg-alpha-btn:hover:not(:disabled) {
+    background: var(--rdr-bg-surface);
+    border-color: var(--rdr-accent);
+    color: var(--rdr-accent);
+}
+
+.rdrg-alpha-btn.active {
+    background: var(--rdr-accent);
+    border-color: var(--rdr-accent);
+    color: #fff;
+}
+
+.rdrg-alpha-btn.rdrg-alpha-empty,
+.rdrg-alpha-btn:disabled {
+    opacity: 0.2;
+    cursor: default;
+}
+
+/* ── Heading lettre ──────────────────────────────────────────── */
+.rdrg-letter-section {
+    margin-bottom: 36px;
+}
+
+.rdrg-letter-heading {
+    font-family: 'Syne', sans-serif !important;
+    font-size: 22px !important;
+    font-weight: 800 !important;
+    color: var(--rdr-accent) !important;
+    margin: 0 0 16px !important;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--rdr-border) !important;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* ── Grille termes ───────────────────────────────────────────── */
+.rdrg-terms-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 16px;
+}
+
+/* ── Carte terme — style cohérent avec .inside-article du thème ─ */
+.rdrg-term-card {
+    background: var(--rdr-bg-card);
+    border: 1px solid var(--rdr-border);
+    border-radius: 10px;
+    padding: 18px 20px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    box-shadow: var(--rdr-shadow-card);
+    transition: border-color 0.2s, transform 0.15s, box-shadow 0.2s;
+}
+
+.rdrg-term-card:hover {
+    border-color: var(--rdr-accent);
+    transform: translateY(-2px);
+    box-shadow: var(--rdr-shadow);
+}
+
+.rdrg-term-title {
+    font-family: 'Syne', sans-serif !important;
+    font-size: 16px !important;
+    font-weight: 700 !important;
+    margin: 0 !important;
+    line-height: 1.3;
+}
+
+.rdrg-term-title a {
+    color: var(--rdr-text-primary) !important;
+    text-decoration: none !important;
+    transition: color 0.2s;
+}
+
+.rdrg-term-title a:hover {
+    color: var(--rdr-accent) !important;
+}
+
+.rdrg-term-aliases {
+    font-size: 12px;
+    color: var(--rdr-text-muted) !important;
+    font-style: italic;
+    font-family: 'JetBrains Mono', monospace;
+    margin: 0 !important;
+}
+
+.rdrg-term-excerpt {
+    font-size: 13px;
+    color: var(--rdr-text-secondary) !important;
+    line-height: 1.55;
+    margin: 0 !important;
+    flex: 1;
+}
+
+.rdrg-term-footer {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 4px;
+    padding-top: 10px;
+    border-top: 1px solid var(--rdr-border);
+}
+
+.rdrg-term-read-more {
+    font-size: 12px;
+    color: var(--rdr-accent) !important;
+    text-decoration: none !important;
+    border: 1px solid var(--rdr-accent);
+    border-radius: 4px;
+    padding: 3px 10px;
+    transition: background 0.15s, color 0.15s;
+    font-weight: 500;
+}
+
+.rdrg-term-read-more:hover {
+    background: var(--rdr-accent) !important;
+    color: #fff !important;
+}
+
+.rdrg-term-ext-link {
+    font-size: 12px;
+    color: var(--rdr-text-secondary) !important;
+    text-decoration: none !important;
+    border: 1px solid var(--rdr-border);
+    border-radius: 4px;
+    padding: 3px 10px;
+    transition: border-color 0.15s, color 0.15s;
+}
+
+.rdrg-term-ext-link:hover {
+    border-color: var(--rdr-accent);
+    color: var(--rdr-accent) !important;
+}
+
+/* ── Messages vide / aucun résultat ──────────────────────────── */
+.rdrg-no-results,
+.rdrg-empty {
+    text-align: center;
+    color: var(--rdr-text-secondary);
+    padding: 40px 20px;
+    font-size: 14px;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   PAGE SINGLE /glossaire/{slug}/
+   Intégrée au layout thème — pas de wrapper custom
+══════════════════════════════════════════════════════════════ */
+
+/* Breadcrumb — utilise les styles nav du thème, juste l'espacement */
+.rdrg-breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    color: var(--rdr-text-secondary) !important;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.rdrg-breadcrumb a {
+    color: var(--rdr-accent) !important;
+    text-decoration: none !important;
+}
+
+.rdrg-breadcrumb a:hover {
+    color: var(--rdr-accent-2) !important;
+}
+
+/* ── En-tête terme : badge lettre + titre ────────────────────── */
+.rdrg-single-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    margin-bottom: 28px;
+}
+
+.rdrg-single-letter-badge {
+    flex-shrink: 0;
+    width: 52px;
+    height: 52px;
+    background: var(--rdr-accent);
+    color: #fff;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Syne', sans-serif;
+    font-size: 24px;
+    font-weight: 800;
+}
+
+.rdrg-single-title {
+    font-family: 'Syne', sans-serif !important;
+    font-size: clamp(22px, 3vw, 32px) !important;
+    font-weight: 800 !important;
+    color: var(--rdr-text-primary) !important;
+    margin: 0 0 6px !important;
+    line-height: 1.2 !important;
+}
+
+.rdrg-single-aliases {
+    font-size: 13px;
+    color: var(--rdr-text-secondary) !important;
+    margin: 0 !important;
+    font-family: 'JetBrains Mono', monospace;
+}
+
+.rdrg-single-aliases span {
+    font-style: normal;
+    font-weight: 600;
+    font-family: 'DM Sans', sans-serif;
+    margin-right: 4px;
+}
+
+/* ── Extrait — blockquote style thème ───────────────────────── */
+.rdrg-single-excerpt {
+    margin-bottom: 28px;
+}
+
+.rdrg-single-excerpt blockquote {
+    background: var(--rdr-bg-accent) !important;
+    border-left: 3px solid var(--rdr-accent) !important;
+    border-radius: 0 8px 8px 0;
+    padding: 14px 18px;
+    margin: 0;
+    font-size: 15px;
+    color: var(--rdr-text-primary) !important;
+    font-style: italic;
+    line-height: 1.65;
+}
+
+/* ── Contenu définition ─────────────────────────────────────── */
+.rdrg-single-content {
+    font-size: 15px;
+    line-height: 1.75;
+    color: var(--rdr-text-primary) !important;
+    margin-bottom: 32px;
+}
+
+/* ── Article associé ────────────────────────────────────────── */
+.rdrg-single-linked-article {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    background: var(--rdr-bg-card);
+    border: 1px solid var(--rdr-border);
+    border-radius: 10px;
+    padding: 14px 16px;
+    margin-bottom: 32px;
+    box-shadow: var(--rdr-shadow-card);
+}
+
+.rdrg-link-icon {
+    font-size: 18px;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.rdrg-single-linked-article strong {
+    display: block;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    color: var(--rdr-text-muted) !important;
+    margin-bottom: 3px;
+}
+
+.rdrg-single-linked-article a {
+    color: var(--rdr-accent) !important;
+    font-size: 14px;
+    word-break: break-all;
+}
+
+/* ── Navigation prev/next ───────────────────────────────────── */
+.rdrg-term-nav {
+    border-top: 1px solid var(--rdr-border);
+    padding-top: 24px;
+    margin-top: 8px;
+}
+
+.rdrg-term-nav-inner {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 12px;
+    align-items: center;
+}
+
+.rdrg-nav-prev,
+.rdrg-nav-next {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 14px;
+    background: var(--rdr-bg-card);
+    border: 1px solid var(--rdr-border);
+    border-radius: 8px;
+    color: var(--rdr-text-primary) !important;
+    text-decoration: none !important;
+    font-size: 13px;
+    transition: border-color 0.15s, background 0.15s;
+    font-family: 'DM Sans', sans-serif;
+}
+
+.rdrg-nav-prev:hover,
+.rdrg-nav-next:hover {
+    border-color: var(--rdr-accent);
+    background: var(--rdr-bg-accent);
+}
+
+.rdrg-nav-next {
+    justify-content: flex-end;
+    text-align: right;
+}
+
+.rdrg-nav-index {
+    text-align: center;
+    font-size: 13px;
+    color: var(--rdr-text-secondary) !important;
+    text-decoration: none !important;
+    white-space: nowrap;
+    padding: 8px;
+    font-family: 'DM Sans', sans-serif;
+}
+
+.rdrg-nav-index:hover {
+    color: var(--rdr-accent) !important;
+}
+
+/* ── Responsive ─────────────────────────────────────────────── */
+@media (max-width: 768px) {
+    .rdrg-terms-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .rdrg-term-nav-inner {
+        grid-template-columns: 1fr;
+    }
+
+    .rdrg-nav-next {
+        justify-content: flex-start;
+        text-align: left;
+    }
+
+    .rdrg-nav-index {
+        order: -1;
+        text-align: left;
+    }
+
+    .rdrg-alpha-btn {
+        min-width: 28px;
+        height: 28px;
+        font-size: 11px;
+    }
+}
+
+@media print {
+    .rdrg-alpha-nav-inline,
+    .rdrg-search-wrap,
+    .rdrg-term-nav { display: none; }
+}
+
+/* ── Contrainte largeur page single (évite de coller la sidebar) ─ */
+.rdrg-single-content,
+.rdrg-single-excerpt,
+.rdrg-single-linked-article,
+.rdrg-term-nav,
+.rdrg-single-header,
+.rdrg-breadcrumb {
+    max-width: 720px;
+}

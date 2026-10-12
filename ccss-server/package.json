@@ -1,0 +1,20 @@
+{
+  "name": "ccss-self-hosted",
+  "version": "1.0.0",
+  "description": "Serveur de génération Critical CSS auto-hébergé — remplace QUIC.cloud pour LSCache",
+  "type": "module",
+  "main": "src/server.js",
+  "scripts": {
+    "start":   "node src/server.js",
+    "dev":     "NODE_ENV=development LOG_LEVEL=debug node src/server.js",
+    "test":    "node scripts/test-generate.js"
+  },
+  "dependencies": {
+    "express":     "^4.18.2",
+    "node-fetch":  "^3.3.2",
+    "playwright":  "^1.59.1"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

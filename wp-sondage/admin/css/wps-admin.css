@@ -1,0 +1,23 @@
+/* WP Sondage — Admin CSS */
+#wps-choices-wrapper {
+    margin-bottom: 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 10px;
+    background: #fafafa;
+    min-height: 40px;
+}
+
+.wps-choice-row {
+    display:     flex;
+    align-items: center;
+    gap:         6px;
+    padding:     4px 0;
+    border-bottom: 1px dashed #eee;
+}
+.wps-choice-row:last-child { border-bottom: none; }
+
+.wps-sort-handle { color: #999; }
+.wps-sort-handle:hover { color: #333; }
+
+#wps-add-choice { margin-top: 8px; }

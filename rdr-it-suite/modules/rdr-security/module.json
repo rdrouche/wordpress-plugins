@@ -1,0 +1,10 @@
+{
+  "slug":        "rdr-security",
+  "name":        "Security",
+  "description": "Durcissement WordPress : masquage de la version, headers HTTP sécurisés, désactivation de l'API REST pour les anonymes.",
+  "version":     "1.0.0",
+  "author":      "Romain Drouche",
+  "icon":        "🛡️",
+  "entry":       "rdr-security.php",
+  "min_version": "1.0.0"
+}

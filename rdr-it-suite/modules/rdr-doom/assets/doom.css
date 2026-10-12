@@ -1,0 +1,371 @@
+/*
+ * RDR Doom — Styles front  v1.1.0
+ * Chargés uniquement si [rdr_doom] est présent.
+ * Variables --rdr-* du thème.
+ */
+
+/* ── Launcher wrapper ────────────────────────────────────────────────────── */
+.rdr-doom-launcher {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    margin: 32px 0;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   EASTER EGG — champ de saisie du code secret
+══════════════════════════════════════════════════════════════════════════ */
+
+.rdr-doom-secret {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.rdr-doom-secret__input {
+    font-family: 'JetBrains Mono', monospace !important;
+    font-size: 18px !important;
+    font-weight: 700 !important;
+    letter-spacing: 6px !important;
+    text-transform: uppercase !important;
+    text-align: center !important;
+    width: 200px !important;
+    padding: 10px 16px !important;
+    background: var(--rdr-bg-card, #1c2128) !important;
+    border: 1.5px solid var(--rdr-border-strong, rgba(255,255,255,0.15)) !important;
+    border-radius: 8px !important;
+    color: var(--rdr-text-primary, #e6edf3) !important;
+    outline: none !important;
+    transition: border-color 0.25s ease, box-shadow 0.25s ease, color 0.25s ease !important;
+    caret-color: var(--rdr-accent, #2ea8ff) !important;
+}
+
+.rdr-doom-secret__input::placeholder {
+    color: var(--rdr-text-muted, #484f58) !important;
+    letter-spacing: 2px !important;
+    font-size: 13px !important;
+    font-weight: 400 !important;
+    text-transform: none !important;
+}
+
+.rdr-doom-secret__input:focus {
+    border-color: var(--rdr-accent, #2ea8ff) !important;
+    box-shadow: 0 0 0 3px rgba(46,168,255,0.15) !important;
+}
+
+.rdr-doom-secret__input.is-success {
+    border-color: var(--rdr-accent-2, #00e5c0) !important;
+    box-shadow: 0 0 0 3px rgba(0,229,192,0.15) !important;
+    color: var(--rdr-accent-2, #00e5c0) !important;
+}
+
+.rdr-doom-secret__input.is-error {
+    border-color: #e53e3e !important;
+    box-shadow: 0 0 0 3px rgba(229,62,62,0.12) !important;
+    animation: rdr-shake 0.4s cubic-bezier(0.36,0.07,0.19,0.97);
+}
+
+@keyframes rdr-shake {
+    0%, 100% { transform: translateX(0); }
+    20%       { transform: translateX(-6px); }
+    40%       { transform: translateX(6px); }
+    60%       { transform: translateX(-4px); }
+    80%       { transform: translateX(4px); }
+}
+
+.rdr-doom-secret__hint {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    min-height: 16px;
+    transition: opacity 0.2s ease;
+}
+
+/* ── Bouton jouer — caché par défaut, révélé après validation ───────────── */
+.rdr-doom-open {
+    font-size: 15px !important;
+    padding: 11px 30px !important;
+    letter-spacing: 0.5px !important;
+    gap: 8px !important;
+    /* Caché : opacity 0 + no pointer-events (hidden attr gère display) */
+    opacity: 0;
+    transform: translateY(10px) scale(0.96);
+    transition: opacity 0.35s ease, transform 0.35s cubic-bezier(0.34,1.36,0.64,1) !important;
+}
+
+.rdr-doom-open.is-revealed {
+    opacity: 1 !important;
+    transform: translateY(0) scale(1) !important;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   MODALE
+══════════════════════════════════════════════════════════════════════════ */
+
+.rdr-doom-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 100000;
+    align-items: center;
+    justify-content: center;
+}
+
+.rdr-doom-modal.is-open {
+    display: flex;
+}
+
+.rdr-doom-modal__backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    cursor: pointer;
+}
+
+.rdr-doom-modal__panel {
+    position: relative;
+    z-index: 1;
+    background: var(--rdr-bg-surface, #161b22);
+    border: 1px solid var(--rdr-border-strong, rgba(255,255,255,0.15));
+    border-radius: 14px;
+    box-shadow: 0 24px 64px rgba(0,0,0,0.75);
+    width: min(960px, 96vw);
+    max-height: 94vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    animation: rdr-doom-in 0.25s cubic-bezier(0.34,1.36,0.64,1) both;
+}
+
+@keyframes rdr-doom-in {
+    from { opacity: 0; transform: scale(0.93) translateY(14px); }
+    to   { opacity: 1; transform: scale(1)    translateY(0);     }
+}
+
+/* ── Header ──────────────────────────────────────────────────────────────── */
+.rdr-doom-modal__header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 20px;
+    border-bottom: 1px solid var(--rdr-border, rgba(255,255,255,0.07));
+    flex-shrink: 0;
+    flex-wrap: wrap;
+}
+
+.rdr-doom-modal__title {
+    font-family: 'Syne', sans-serif !important;
+    font-size: 18px !important;
+    font-weight: 800 !important;
+    color: var(--rdr-accent, #2ea8ff) !important;
+    margin: 0 !important;
+    border: none !important;
+    padding: 0 !important;
+    flex: 1;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.rdr-doom-modal__cheat {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--rdr-bg-card, #1c2128);
+    border: 1px solid var(--rdr-border-strong, rgba(255,255,255,0.15));
+    border-radius: 8px;
+    padding: 6px 12px;
+}
+
+.rdr-doom-modal__cheat-label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    color: var(--rdr-text-secondary, #8b949e);
+    white-space: nowrap;
+}
+
+.rdr-doom-modal__cheat-code {
+    font-family: 'JetBrains Mono', monospace !important;
+    font-size: 14px !important;
+    font-weight: 700 !important;
+    color: var(--rdr-accent-2, #00e5c0) !important;
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+    letter-spacing: 3px;
+}
+
+.rdr-doom-modal__cheat-copy {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 15px;
+    padding: 0 2px;
+    line-height: 1;
+    transition: transform 0.15s ease;
+    color: var(--rdr-text-secondary, #8b949e);
+}
+
+.rdr-doom-modal__cheat-copy:hover { transform: scale(1.2); }
+
+.rdr-doom-modal__cheat-copy.copied::after {
+    content: ' ✓';
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    color: var(--rdr-accent-2, #00e5c0);
+}
+
+.rdr-doom-modal__close {
+    background: none;
+    border: 1px solid var(--rdr-border, rgba(255,255,255,0.07));
+    border-radius: 6px;
+    color: var(--rdr-text-secondary, #8b949e);
+    cursor: pointer;
+    font-size: 16px;
+    line-height: 1;
+    padding: 5px 9px;
+    transition: background 0.15s, color 0.15s, border-color 0.15s;
+    flex-shrink: 0;
+}
+
+.rdr-doom-modal__close:hover {
+    background: rgba(229,62,62,0.15);
+    border-color: #e53e3e;
+    color: #e53e3e;
+}
+
+/* ── Body / canvas ───────────────────────────────────────────────────────── */
+.rdr-doom-modal__body {
+    flex: 1;
+    overflow: hidden;
+    background: #000;
+    position: relative;
+}
+
+.rdr-doom-canvas-wrapper {
+    width: 100%;
+    height: 100%;
+    min-height: 500px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#rdr-doom-mount {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    inset: 0;
+}
+
+#rdr-doom-mount canvas {
+    display: block;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain;
+    image-rendering: pixelated;
+}
+
+/* ── Loader ──────────────────────────────────────────────────────────────── */
+.rdr-doom-loader {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    background: #0a0a0a;
+    z-index: 2;
+    transition: opacity 0.5s ease;
+}
+
+.rdr-doom-loader.is-hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.rdr-doom-loader__skull {
+    font-size: 40px;
+    animation: rdr-doom-pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes rdr-doom-pulse {
+    0%, 100% { transform: scale(1);    opacity: 1; }
+    50%       { transform: scale(1.1); opacity: 0.7; }
+}
+
+.rdr-doom-loader__text {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: var(--rdr-accent, #2ea8ff);
+    letter-spacing: 1px;
+}
+
+.rdr-doom-loader__bar {
+    width: 260px;
+    height: 3px;
+    background: #1c1c1c;
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.rdr-doom-loader__progress {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, var(--rdr-accent, #2ea8ff), var(--rdr-accent-2, #00e5c0));
+    border-radius: 2px;
+    transition: width 0.3s ease;
+}
+
+/* ── Footer ──────────────────────────────────────────────────────────────── */
+.rdr-doom-modal__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    border-top: 1px solid var(--rdr-border, rgba(255,255,255,0.07));
+    flex-shrink: 0;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.rdr-doom-modal__hint {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    color: var(--rdr-text-muted, #484f58);
+}
+
+/* ── Mode clair ──────────────────────────────────────────────────────────── */
+[data-theme="light"] .rdr-doom-secret__input {
+    background: #f1f5f9 !important;
+    border-color: #cbd5e0 !important;
+    color: #1a1a2e !important;
+}
+
+[data-theme="light"] .rdr-doom-secret__input:focus {
+    border-color: var(--rdr-accent, #1e73be) !important;
+    box-shadow: 0 0 0 3px rgba(30,115,190,0.12) !important;
+}
+
+[data-theme="light"] .rdr-doom-modal__panel {
+    background: #ffffff;
+    border-color: #e2e8f0;
+    box-shadow: 0 24px 64px rgba(0,0,0,0.2);
+}
+
+[data-theme="light"] .rdr-doom-modal__cheat {
+    background: #f1f5f9;
+    border-color: #cbd5e0;
+}
+
+/* ── Responsive ──────────────────────────────────────────────────────────── */
+@media (max-width: 600px) {
+    .rdr-doom-modal__cheat-label { display: none; }
+    .rdr-doom-modal__panel { border-radius: 10px; }
+    .rdr-doom-canvas-wrapper { min-height: 320px; }
+    .rdr-doom-secret__input { width: 160px !important; font-size: 16px !important; }
+}

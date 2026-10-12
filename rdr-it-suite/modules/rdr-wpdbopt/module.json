@@ -1,0 +1,10 @@
+{
+  "slug":        "rdr-wpdbopt",
+  "name": "WP DB Optimizer",
+  "description": "Analyse et nettoyage de la table wp_options (autoload, taille, export) et des métas orphelines/obsolètes (postmeta, termmeta, usermeta).",
+  "version":     "1.0.0",
+  "author":      "Romain Drouche",
+  "icon":        "🗄️",
+  "entry":       "rdr-wpdbopt.php",
+  "min_version": "1.2.0"
+}

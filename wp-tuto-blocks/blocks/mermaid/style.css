@@ -1,0 +1,61 @@
+.wp-tuto-mermaid { margin:1.5rem 0; }
+.wp-tuto-mermaid__inner { position:relative; display:inline-block; max-width:100%; }
+.wp-tuto-mermaid--center { text-align:center; }
+.wp-tuto-mermaid--center .wp-tuto-mermaid__inner { display:block; }
+.wp-tuto-mermaid--left   { text-align:left; }
+.wp-tuto-mermaid--right  { text-align:right; }
+.wp-tuto-mermaid--right .wp-tuto-mermaid__inner { margin-left:auto; display:block; }
+.wp-tuto-mermaid .mermaid { display:block; }
+.wp-tuto-mermaid svg { max-width:100%; height:auto; display:block; }
+.wp-tuto-mermaid pre.mermaid { background:transparent; padding:0; margin:0; border:none; font-size:0; }
+
+/* ── État de chargement ── */
+.wp-tuto-mermaid__loading {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: .5rem;
+	min-height: 60px;
+	color: #999;
+	font-size: .85rem;
+}
+
+.wp-tuto-mermaid__spinner {
+	display: inline-block;
+	width: 1.2em;
+	height: 1.2em;
+	border: 2px solid #ddd;
+	border-top-color: #007bff;
+	border-radius: 50%;
+	animation: rdritSpin .7s linear infinite;
+}
+
+@keyframes rdritSpin { to { transform: rotate(360deg); } }
+
+/* Masqué une fois rendu */
+.wp-tuto-mermaid__diagram.is-rendered .wp-tuto-mermaid__spinner,
+.wp-tuto-mermaid__diagram.is-rendered .wp-tuto-mermaid__loading-text { display: none; }
+
+/* ── Erreur de parsing ── */
+.wp-tuto-mermaid__error {
+	padding: .75rem 1rem;
+	background: #fdecea;
+	border-left: 4px solid #dc3545;
+	border-radius: 4px;
+	font-size: .85rem;
+	color: #7d1c14;
+}
+
+.wp-tuto-mermaid__error code {
+	display: block;
+	margin-top: .4rem;
+	font-size: .8rem;
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+[data-theme="dark"] .wp-tuto-mermaid__error {
+	background: #2d0a0a;
+	border-color: #ef5350;
+	color: #ffcdd2;
+}

@@ -1,0 +1,55 @@
+name: Docker Build on Tag
+
+on:
+  push:
+    tags:
+      - '*'
+  workflow_dispatch:
+  # Ajout du prompt pour le mode manuel
+    inputs:
+      tag_name:
+        description: 'Nom du tag Docker à build (ex: v1.0.0)'
+        required: true
+        type: string
+        default: 'manual-build'
+
+jobs:
+  build-and-push:
+    runs-on: docker 
+    container:
+      image: docker:latest
+    env:
+      DOCKER_HOST: unix:///var/run/docker.sock
+    # Security : check if on tag
+    if: startsWith(github.ref, 'refs/tags/') || github.event_name == 'workflow_dispatch'
+
+    steps:
+      - name: Install Node.js 
+        run: apk add --no-cache nodejs
+
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Login to Forgejo Registry
+        run: echo "${{ secrets.REPO_TOKEN }}" | docker login ${{ github.server_url }} -u ${{ github.actor }} --password-stdin
+
+      - name: Build and Push
+        run: |
+          # Local Registry 
+          REGISTRY="registry.domain.tld/my-images/ccss-gen"
+
+          # Logique pour récupérer le tag selon le mode de déclenchement
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            TAG_NAME="${{ github.event.inputs.tag_name }}"
+          else
+            TAG_NAME=${GITHUB_REF#refs/tags/}
+          fi
+          
+          # Définition des noms d'images
+          IMAGE_LOCAL="${REGISTRY}"
+
+          # Construction de l'image
+          docker build -t $IMAGE_LOCAL:$TAG_NAME .
+
+          # Push vers le registre local
+          docker push $IMAGE_LOCAL:$TAG_NAME

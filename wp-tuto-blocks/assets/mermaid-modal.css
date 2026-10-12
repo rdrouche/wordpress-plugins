@@ -1,0 +1,128 @@
+/* =========================================================
+   WP Tuto Blocks — Mermaid modal / lightbox
+   ========================================================= */
+
+/* Empêche le scroll du body quand la modale est ouverte */
+body.rdrit-modal-open { overflow: hidden; }
+
+/* ── Overlay ── */
+.rdrit-mermaid-modal {
+	display: none;
+	position: fixed;
+	inset: 0;
+	z-index: 99999;
+	background: rgba( 0, 0, 0, .75 );
+	backdrop-filter: blur( 4px );
+	align-items: center;
+	justify-content: center;
+	padding: 1.5rem;
+	box-sizing: border-box;
+	animation: rdritModalFadeIn .18s ease;
+}
+
+.rdrit-mermaid-modal.is-open {
+	display: flex;
+}
+
+@keyframes rdritModalFadeIn {
+	from { opacity: 0; }
+	to   { opacity: 1; }
+}
+
+/* ── Corps ── */
+.rdrit-mermaid-modal__body {
+	position: relative;
+	background: #fff;
+	border-radius: 10px;
+	padding: 2rem;
+	max-width: min( 95vw, 1200px );
+	max-height: 90vh;
+	overflow: auto;
+	box-shadow: 0 25px 60px rgba( 0, 0, 0, .4 );
+	animation: rdritModalSlideIn .2s ease;
+	box-sizing: border-box;
+}
+
+@keyframes rdritModalSlideIn {
+	from { transform: scale( .94 ); opacity: 0; }
+	to   { transform: scale( 1 );   opacity: 1; }
+}
+
+/* ── SVG ── */
+.rdrit-mermaid-modal__svg {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-width: 400px;
+	min-height: 200px;
+}
+
+.rdrit-mermaid-modal__svg svg {
+	width: 100%;
+	height: auto;
+	max-height: 80vh;
+}
+
+/* ── Bouton fermer ── */
+.rdrit-mermaid-modal__close {
+	position: fixed;
+	top: 1rem;
+	right: 1rem;
+	width: 2.5rem;
+	height: 2.5rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: rgba( 255, 255, 255, .15 );
+	border: 2px solid rgba( 255, 255, 255, .5 );
+	border-radius: 50%;
+	color: #fff;
+	font-size: 1.1rem;
+	cursor: pointer;
+	line-height: 1;
+	transition: background .15s;
+	backdrop-filter: blur( 4px );
+	z-index: 100000;
+}
+
+.rdrit-mermaid-modal__close:hover {
+	background: rgba( 255, 255, 255, .3 );
+}
+
+/* ── Bouton zoom sur le bloc ── */
+.wp-tuto-mermaid--zoomable .wp-tuto-mermaid__inner {
+	position: relative;
+	cursor: zoom-in;
+}
+
+.wp-tuto-mermaid__zoom-btn {
+	position: absolute;
+	bottom: .5rem;
+	right: .5rem;
+	width: 2rem;
+	height: 2rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: rgba( 0, 0, 0, .55 );
+	border: 1px solid rgba( 255, 255, 255, .3 );
+	border-radius: 5px;
+	color: #fff;
+	font-size: 1rem;
+	cursor: pointer;
+	opacity: 0;
+	transition: opacity .2s;
+	z-index: 2;
+}
+
+.wp-tuto-mermaid--zoomable:hover .wp-tuto-mermaid__zoom-btn,
+.wp-tuto-mermaid--zoomable:focus-within .wp-tuto-mermaid__zoom-btn {
+	opacity: 1;
+}
+
+/* ── Mode sombre ── */
+[data-theme="dark"] .rdrit-mermaid-modal__body {
+	background: #1e1e2e;
+	color: #cdd6f4;
+	box-shadow: 0 25px 60px rgba( 0, 0, 0, .7 );
+}

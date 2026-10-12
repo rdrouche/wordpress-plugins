@@ -1,0 +1,10 @@
+{
+  "slug":        "rdr-author-box",
+  "name":        "Author Box",
+  "description": "Boîte auteur dynamique. Photo custom, nom indépendant du profil WP, réseaux sociaux, Polylang, meta box masquer.",
+  "version":     "1.0.4",
+  "author":      "Romain Drouche",
+  "icon":        "👤",
+  "entry":       "rdr-author-box.php",
+  "min_version": "1.2.0"
+}

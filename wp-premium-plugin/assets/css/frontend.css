@@ -1,0 +1,795 @@
+/* =============================================================================
+   WP Premium Access — Frontend Styles
+   Dark / Light theme via [data-wpa-theme] + CSS custom properties.
+   Respects prefers-color-scheme and a .dark-mode class on <body>.
+   ============================================================================= */
+
+/* --- Custom properties — light theme (default) --- */
+:root,
+[data-wpa-theme] {
+    --wpa-bg:           #ffffff;
+    --wpa-bg-subtle:    #f6f7f9;
+    --wpa-border:       #e2e5ea;
+    --wpa-text:         #1a1d23;
+    --wpa-text-muted:   #6b7280;
+    --wpa-accent:       #5046e5;
+    --wpa-accent-hover: #3d35c4;
+    --wpa-accent-text:  #ffffff;
+    --wpa-danger:       #dc2626;
+    --wpa-danger-hover: #b91c1c;
+    --wpa-success:      #16a34a;
+    --wpa-warning-bg:   #fffbeb;
+    --wpa-warning-text: #92400e;
+    --wpa-radius:       8px;
+    --wpa-radius-sm:    4px;
+    --wpa-shadow:       0 1px 3px rgba(0,0,0,.08), 0 1px 2px rgba(0,0,0,.06);
+    --wpa-font:         inherit;
+}
+
+/* --- Dark theme: body.dark-mode or prefers-color-scheme --- */
+body.dark-mode [data-wpa-theme],
+@media (prefers-color-scheme: dark) {
+    [data-wpa-theme] {
+        --wpa-bg:           #1a1d23;
+        --wpa-bg-subtle:    #242830;
+        --wpa-border:       #2e323c;
+        --wpa-text:         #e8eaed;
+        --wpa-text-muted:   #9ca3af;
+        --wpa-accent:       #7c6ff7;
+        --wpa-accent-hover: #6b5ef5;
+        --wpa-accent-text:  #ffffff;
+        --wpa-danger:       #f87171;
+        --wpa-danger-hover: #ef4444;
+        --wpa-warning-bg:   #2d2208;
+        --wpa-warning-text: #fbbf24;
+        --wpa-shadow:       0 1px 3px rgba(0,0,0,.3);
+    }
+}
+
+/* Also support explicit .dark-mode without body parent */
+.dark-mode [data-wpa-theme] {
+    --wpa-bg:           #1a1d23;
+    --wpa-bg-subtle:    #242830;
+    --wpa-border:       #2e323c;
+    --wpa-text:         #e8eaed;
+    --wpa-text-muted:   #9ca3af;
+    --wpa-accent:       #7c6ff7;
+    --wpa-accent-hover: #6b5ef5;
+    --wpa-danger:       #f87171;
+    --wpa-warning-bg:   #2d2208;
+    --wpa-warning-text: #fbbf24;
+    --wpa-shadow:       0 1px 3px rgba(0,0,0,.3);
+}
+
+/* =============================================================================
+   Base component styles
+   ============================================================================= */
+
+[data-wpa-theme] {
+    background: var(--wpa-bg);
+    color:      var(--wpa-text);
+    font-family: var(--wpa-font);
+    box-sizing: border-box;
+}
+
+/* --- Buttons --- */
+.wpa-btn {
+    display:         inline-flex;
+    align-items:     center;
+    gap:             .4em;
+    padding:         .55em 1.2em;
+    border:          1px solid transparent;
+    border-radius:   var(--wpa-radius-sm);
+    font-size:       .9rem;
+    font-weight:     500;
+    line-height:     1.4;
+    cursor:          pointer;
+    text-decoration: none;
+    transition:      background .15s, border-color .15s, color .15s, opacity .15s;
+}
+
+.wpa-btn:focus-visible {
+    outline:        2px solid var(--wpa-accent);
+    outline-offset: 2px;
+}
+
+.wpa-btn--primary {
+    background: var(--wpa-accent);
+    color:      var(--wpa-accent-text);
+    border-color: var(--wpa-accent);
+}
+.wpa-btn--primary:hover {
+    background:   var(--wpa-accent-hover);
+    border-color: var(--wpa-accent-hover);
+}
+
+.wpa-btn--secondary {
+    background:   var(--wpa-bg-subtle);
+    color:        var(--wpa-text);
+    border-color: var(--wpa-border);
+}
+.wpa-btn--secondary:hover {
+    border-color: var(--wpa-accent);
+    color:        var(--wpa-accent);
+}
+
+.wpa-btn--danger {
+    background:   transparent;
+    color:        var(--wpa-danger);
+    border-color: var(--wpa-danger);
+}
+.wpa-btn--danger:hover {
+    background: var(--wpa-danger);
+    color:      #fff;
+}
+
+.wpa-btn--ghost {
+    background:   transparent;
+    color:        var(--wpa-text-muted);
+    border-color: var(--wpa-border);
+}
+.wpa-btn--ghost:hover { color: var(--wpa-text); }
+
+.wpa-btn--sm { padding: .35em .8em; font-size: .8rem; }
+
+.wpa-btn:disabled,
+.wpa-btn[aria-disabled="true"] {
+    opacity: .55;
+    pointer-events: none;
+}
+
+/* --- Input --- */
+.wpa-input {
+    width:         100%;
+    padding:       .55em .85em;
+    border:        1px solid var(--wpa-border);
+    border-radius: var(--wpa-radius-sm);
+    background:    var(--wpa-bg);
+    color:         var(--wpa-text);
+    font-size:     .9rem;
+    transition:    border-color .15s;
+}
+.wpa-input:focus {
+    outline:      none;
+    border-color: var(--wpa-accent);
+    box-shadow:   0 0 0 3px rgba(80,70,229,.15);
+}
+.wpa-input::placeholder { color: var(--wpa-text-muted); }
+
+.wpa-label {
+    display:       block;
+    font-size:     .85rem;
+    font-weight:   500;
+    margin-bottom: .35em;
+    color:         var(--wpa-text);
+}
+
+.wpa-input-group {
+    display:   flex;
+    gap:       .5rem;
+    flex-wrap: wrap;
+}
+.wpa-input-group .wpa-input { flex: 1; min-width: 200px; }
+
+.wpa-hint {
+    margin:    .4em 0 0;
+    font-size: .8rem;
+    color:     var(--wpa-text-muted);
+}
+
+/* =============================================================================
+   Login form
+   ============================================================================= */
+
+.wpa-login-form {
+    padding:       1.25rem;
+    border:        1px solid var(--wpa-border);
+    border-radius: var(--wpa-radius);
+    box-shadow:    var(--wpa-shadow);
+}
+
+.wpa-form-feedback {
+    margin-top:  .6rem;
+    font-size:   .875rem;
+    min-height:  1.2em;
+}
+.wpa-form-feedback.is-success { color: var(--wpa-success); }
+.wpa-form-feedback.is-error   { color: var(--wpa-danger);  }
+
+.wpa-notice {
+    padding:       .65em 1em;
+    border-radius: var(--wpa-radius-sm);
+    font-size:     .875rem;
+    margin-bottom: 1em;
+}
+.wpa-notice--error {
+    background: #fef2f2;
+    color:      var(--wpa-danger);
+    border:     1px solid #fecaca;
+}
+.wpa-notice--info {
+    background: var(--wpa-warning-bg);
+    color:      var(--wpa-warning-text);
+    border:     1px solid currentColor;
+}
+
+/* =============================================================================
+   Premium gate
+   ============================================================================= */
+
+.wpa-gate {
+    display:        flex;
+    align-items:    center;
+    gap:            .75rem;
+    padding:        1rem 1.25rem;
+    border:         1px solid var(--wpa-border);
+    border-radius:  var(--wpa-radius);
+    background:     var(--wpa-bg-subtle);
+    margin:         1.5em 0;
+}
+
+.wpa-gate__icon { font-size: 1.4rem; color: var(--wpa-accent); flex-shrink: 0; }
+.wpa-gate__message { margin: 0; font-size: .9rem; }
+.wpa-gate__message a { color: var(--wpa-accent); }
+
+/* =============================================================================
+   Badges
+   ============================================================================= */
+
+.wpa-badge {
+    display:       inline-block;
+    padding:       .2em .6em;
+    font-size:     .75rem;
+    font-weight:   600;
+    border-radius: 999px;
+    background:    var(--wpa-accent);
+    color:         var(--wpa-accent-text);
+    margin-right:  .25em;
+}
+
+.wpa-premium-badge {
+    display:     inline-flex;
+    align-items: center;
+    gap:         .3em;
+    font-size:   .8rem;
+    font-weight: 600;
+    color:       var(--wpa-accent);
+}
+
+/* =============================================================================
+   Account panel
+   ============================================================================= */
+
+.wpa-account {
+    padding:       1.25rem;
+    border:        1px solid var(--wpa-border);
+    border-radius: var(--wpa-radius);
+    box-shadow:    var(--wpa-shadow);
+}
+
+.wpa-account__section {
+    padding-bottom: 1rem;
+    margin-bottom:  1rem;
+    border-bottom:  1px solid var(--wpa-border);
+}
+.wpa-account__section:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.wpa-account__heading {
+    font-size:     .85rem;
+    font-weight:   600;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+    color:         var(--wpa-text-muted);
+    margin:        0 0 .6rem;
+}
+
+/* Toggle switch */
+.wpa-toggle {
+    display:     flex;
+    align-items: center;
+    gap:         .65rem;
+    cursor:      pointer;
+    user-select: none;
+}
+.wpa-toggle input { position: absolute; opacity: 0; width: 0; height: 0; }
+
+.wpa-toggle__track {
+    width:         40px;
+    height:        22px;
+    border-radius: 999px;
+    background:    var(--wpa-border);
+    position:      relative;
+    transition:    background .2s;
+    flex-shrink:   0;
+}
+.wpa-toggle__track::after {
+    content:       '';
+    position:      absolute;
+    top:           3px;
+    left:          3px;
+    width:         16px;
+    height:        16px;
+    border-radius: 50%;
+    background:    #fff;
+    transition:    transform .2s;
+    box-shadow:    0 1px 2px rgba(0,0,0,.2);
+}
+.wpa-toggle input:checked ~ .wpa-toggle__track {
+    background: var(--wpa-accent);
+}
+.wpa-toggle input:checked ~ .wpa-toggle__track::after {
+    transform: translateX(18px);
+}
+.wpa-toggle__label { font-size: .9rem; }
+
+/* =============================================================================
+   Account box widget
+   ============================================================================= */
+
+.wpa-account-box {
+    padding:       1rem;
+    border:        1px solid var(--wpa-border);
+    border-radius: var(--wpa-radius);
+}
+.wpa-account-box__email {
+    font-size:     .875rem;
+    color:         var(--wpa-text-muted);
+    margin:        0 0 .5rem;
+    word-break:    break-word;
+}
+.wpa-account-box__roles { margin-bottom: .75rem; }
+
+/* =============================================================================
+   CTA widget
+   ============================================================================= */
+
+.wpa-cta {
+    padding:       1.1rem 1.25rem;
+    border:        1px solid var(--wpa-border);
+    border-radius: var(--wpa-radius);
+    background:    var(--wpa-bg-subtle);
+    text-align:    center;
+}
+.wpa-cta__text {
+    font-size:     .9rem;
+    margin:        0 0 .9rem;
+    color:         var(--wpa-text);
+}
+.wpa-cta__btn { width: 100%; justify-content: center; }
+
+/* =============================================================================
+   Export button
+   ============================================================================= */
+
+.wpa-export-btn { font-size: .85rem; }
+.wpa-export-btn__icon { font-style: normal; }
+
+/* =============================================================================
+   Floating export button — integrates with window.rdrFloatingStack
+   ============================================================================= */
+
+.wpa-export-float {
+    display:         inline-flex;
+    align-items:     center;
+    gap:             .4em;
+    padding:         .55em .9em;
+    background:      var(--wpa-accent);
+    color:           var(--wpa-accent-text);
+    border:          none;
+    border-radius:   var(--wpa-radius-sm);
+    font-size:       .8rem;
+    font-weight:     600;
+    cursor:          pointer;
+    white-space:     nowrap;
+    box-shadow:      var(--wpa-shadow);
+    transition:      background .15s, opacity .15s, transform .1s;
+    /* Position handled by rdrFloatingStack */
+}
+
+.wpa-export-float:hover {
+    background: var(--wpa-accent-hover);
+    transform:  translateY(-1px);
+}
+
+.wpa-export-float:active {
+    transform: translateY(0);
+}
+
+.wpa-export-float:focus-visible {
+    outline:        2px solid var(--wpa-accent);
+    outline-offset: 2px;
+}
+
+.wpa-export-float[aria-busy="true"] {
+    opacity: .7;
+    cursor:  wait;
+}
+
+.wpa-export-float__icon  { font-style: normal; letter-spacing: -.02em; }
+.wpa-export-float__label { /* visible by default — hide on very small if needed */ }
+
+/* Hide label on narrow viewports, keep icon */
+@media (max-width: 480px) {
+    .wpa-export-float__label { display: none; }
+}
+
+/* rdrFloatingStack hides elements < 768px — respected automatically */
+
+/* =============================================================================
+   Toast notification
+   ============================================================================= */
+
+.wpa-toast {
+    position:      fixed;
+    bottom:        1.5rem;
+    left:          50%;
+    transform:     translateX(-50%) translateY(1rem);
+    background:    var(--wpa-text);
+    color:         var(--wpa-bg);
+    padding:       .6em 1.2em;
+    border-radius: var(--wpa-radius-sm);
+    font-size:     .875rem;
+    z-index:       99999;
+    opacity:       0;
+    transition:    opacity .25s, transform .25s;
+    pointer-events: none;
+    white-space:   nowrap;
+}
+
+.wpa-toast--visible {
+    opacity:   1;
+    transform: translateX(-50%) translateY(0);
+}
+
+/* =============================================================================
+   Already logged in / not connected messages
+   ============================================================================= */
+
+.wpa-already-logged-in {
+    font-size:    .9rem;
+    color:        var(--wpa-text-muted);
+    padding:      .65rem 1rem;
+    background:   var(--wpa-bg-subtle);
+    border:       1px solid var(--wpa-border);
+    border-radius: var(--wpa-radius-sm);
+    display:      flex;
+    align-items:  center;
+    gap:          .5em;
+}
+
+.wpa-not-connected {
+    display:       flex;
+    align-items:   flex-start;
+    gap:           1rem;
+    padding:       1.25rem;
+    background:    var(--wpa-bg);
+    border:        1px solid var(--wpa-border);
+    border-radius: var(--wpa-radius);
+    box-shadow:    var(--wpa-shadow);
+}
+
+.wpa-not-connected__icon {
+    font-size:  1.5rem;
+    flex-shrink: 0;
+    margin-top: .1rem;
+}
+
+.wpa-not-connected__body {
+    flex: 1;
+}
+
+.wpa-not-connected__text {
+    font-size:     .9rem;
+    color:         var(--wpa-text-muted);
+    margin:        0 0 .85rem;
+    line-height:   1.5;
+}
+
+/* =============================================================================
+   Expiry notice banner
+   ============================================================================= */
+
+.wpa-expiry-notice {
+    position:    relative;
+    display:     flex;
+    align-items: center;
+    gap:         .75rem;
+    flex-wrap:   wrap;
+    padding:     .65rem 1.25rem;
+    font-size:   .9rem;
+    z-index:     9980;
+}
+
+.wpa-expiry-notice--expired {
+    background: #fef2f2;
+    border-bottom: 2px solid #fecaca;
+    color: #991b1b;
+}
+
+.wpa-expiry-notice--warning {
+    background: #fffbeb;
+    border-bottom: 2px solid #fde68a;
+    color: #92400e;
+}
+
+.wpa-expiry-notice__close {
+    margin-left: auto;
+    background:  none;
+    border:      none;
+    font-size:   1.1rem;
+    cursor:      pointer;
+    color:       currentColor;
+    opacity:     .6;
+    line-height: 1;
+    padding:     0 .25rem;
+}
+.wpa-expiry-notice__close:hover { opacity: 1; }
+
+/* =============================================================================
+   Early access posts — [wpa_early_access] — card grid layout
+   ============================================================================= */
+
+.wpa-early-access { margin: 1em 0; }
+
+/* Search bar */
+.wpa-ea-search { margin-bottom: 1.25rem; }
+.wpa-ea-search__input {
+    width:         100%;
+    max-width:     360px;
+    padding:       .55em 1em;
+    border:        1px solid var(--wpa-border);
+    border-radius: var(--wpa-radius-sm);
+    background:    var(--wpa-bg);
+    color:         var(--wpa-text);
+    font-size:     .9rem;
+    transition:    border-color .15s;
+}
+.wpa-ea-search__input:focus {
+    outline:      none;
+    border-color: var(--wpa-accent);
+    box-shadow:   0 0 0 3px rgba(80,70,229,.12);
+}
+
+/* Card grid */
+.wpa-ea-grid {
+    display:               grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap:                   1.25rem;
+}
+
+/* Card */
+.wpa-ea-card {
+    background:    var(--wpa-bg);
+    border:        1px solid var(--wpa-border);
+    border-radius: var(--wpa-radius);
+    overflow:      hidden;
+    display:       flex;
+    flex-direction: column;
+    transition:    box-shadow .15s, border-color .15s;
+}
+.wpa-ea-card:hover {
+    border-color: var(--wpa-accent);
+    box-shadow:   var(--wpa-shadow);
+}
+
+.wpa-ea-card__thumb-wrap {
+    aspect-ratio:  16 / 9;
+    overflow:      hidden;
+    background:    var(--wpa-bg-subtle);
+    flex-shrink:   0;
+}
+.wpa-ea-card__thumb {
+    width:      100%;
+    height:     100%;
+    object-fit: cover;
+    display:    block;
+    transition: transform .3s;
+}
+.wpa-ea-card:hover .wpa-ea-card__thumb { transform: scale(1.03); }
+.wpa-ea-card__thumb--placeholder {
+    display:         flex;
+    align-items:     center;
+    justify-content: center;
+}
+.wpa-ea-card__thumb--placeholder::after {
+    content:   '&#9733;';
+    font-size: 2rem;
+    color:     var(--wpa-border);
+}
+
+.wpa-ea-card__body {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap:     .4rem;
+    flex:    1;
+}
+
+.wpa-ea-card__meta {
+    display:     flex;
+    align-items: center;
+    gap:         .5rem;
+    flex-wrap:   wrap;
+}
+
+.wpa-early-access__type {
+    font-size:      .7rem;
+    font-weight:    600;
+    text-transform: uppercase;
+    letter-spacing: .05em;
+    padding:        2px 7px;
+    border-radius:  999px;
+    background:     var(--wpa-bg-subtle);
+    color:          var(--wpa-text-muted);
+    border:         1px solid var(--wpa-border);
+}
+
+.wpa-early-access__date {
+    font-size: .78rem;
+    color:     var(--wpa-text-muted);
+}
+
+.wpa-early-access__export {
+    font-size:       .72rem;
+    font-weight:     600;
+    color:           var(--wpa-accent);
+    text-decoration: none;
+    padding:         2px 7px;
+    border:          1px solid var(--wpa-accent);
+    border-radius:   var(--wpa-radius-sm);
+    margin-left:     auto;
+    white-space:     nowrap;
+}
+.wpa-early-access__export:hover { background: var(--wpa-accent); color: var(--wpa-accent-text); }
+
+.wpa-ea-card__title {
+    font-size:   1rem;
+    font-weight: 500;
+    margin:      0;
+    line-height: 1.35;
+}
+.wpa-ea-card__title a {
+    color:           var(--wpa-text);
+    text-decoration: none;
+}
+.wpa-ea-card__title a:hover { color: var(--wpa-accent); }
+
+.wpa-ea-card__excerpt {
+    font-size:   .85rem;
+    color:       var(--wpa-text-muted);
+    margin:      0;
+    line-height: 1.5;
+    flex:        1;
+}
+
+.wpa-ea-empty {
+    color:      var(--wpa-text-muted);
+    font-size:  .9rem;
+    font-style: italic;
+    padding:    1rem 0;
+}
+
+/* Skeleton */
+.wpa-ea-card--skeleton { pointer-events: none; }
+
+.wpa-skel {
+    background:            linear-gradient(90deg, var(--wpa-bg-subtle) 25%, var(--wpa-border) 50%, var(--wpa-bg-subtle) 75%);
+    background-size:       200% 100%;
+    animation:             wpa-skel-shine 1.4s infinite;
+    border-radius:         var(--wpa-radius-sm);
+}
+.wpa-skel.wpa-ea-card__thumb-wrap {
+    width:  100%;
+    height: 100%;
+    border-radius: 0;
+}
+.wpa-skel--title  { height: 18px; margin-bottom: 6px; }
+.wpa-skel--text   { height: 13px; margin-bottom: 5px; }
+
+@keyframes wpa-skel-shine {
+    from { background-position: 200% 0; }
+    to   { background-position: -200% 0; }
+}
+
+@media (max-width: 600px) {
+    .wpa-ea-grid { grid-template-columns: 1fr; }
+}
+
+/* =============================================================================
+   Account panel — role expiry + devices + early access button
+   ============================================================================= */
+
+.wpa-account__email {
+    font-size:    .9rem;
+    color:        var(--wpa-text-muted);
+    margin:       0 0 .75rem;
+}
+
+.wpa-account__roles {
+    display:        flex;
+    flex-direction: column;
+    gap:            .5rem;
+    margin-bottom:  1rem;
+}
+
+.wpa-account__role {
+    display:     flex;
+    align-items: center;
+    gap:         .6rem;
+    flex-wrap:   wrap;
+}
+
+.wpa-account__role--expiring .wpa-badge {
+    border-color: #f59e0b;
+    color:        #b45309;
+    background:   #fef3c7;
+}
+
+.wpa-account__expiry {
+    font-size: .8rem;
+    color:     var(--wpa-text-muted);
+}
+
+.wpa-account__expiry--lifetime {
+    color:       var(--wpa-accent);
+    font-weight: 500;
+}
+
+.wpa-account__expiry--soon {
+    color:       #dc2626;
+    font-weight: 500;
+}
+
+.wpa-account__ea-btn {
+    margin-top:  .25rem;
+}
+.wpa-account__ea-btn:hover {
+    border-color: var(--wpa-accent);
+    color:        var(--wpa-accent);
+}
+
+.wpa-account__devices {
+    list-style: none;
+    margin:     0 0 .5rem;
+    padding:    0;
+    display:    flex;
+    flex-direction: column;
+    gap:        .4rem;
+}
+
+.wpa-account__device {
+    display:     flex;
+    align-items: center;
+    gap:         .6rem;
+    font-size:   .85rem;
+    padding:     .4rem .6rem;
+    background:  var(--wpa-bg-subtle);
+    border:      1px solid var(--wpa-border);
+    border-radius: var(--wpa-radius-sm);
+}
+
+.wpa-account__device-icon {
+    font-size: 1rem;
+    flex-shrink: 0;
+}
+
+.wpa-account__device-info {
+    flex: 1;
+    color: var(--wpa-text);
+}
+
+.wpa-account__device-info em {
+    color:      var(--wpa-text-muted);
+    font-size:  .78rem;
+    font-style: normal;
+}
+
+.wpa-account__device-date {
+    font-size: .75rem;
+    color:     var(--wpa-text-muted);
+    white-space: nowrap;
+}

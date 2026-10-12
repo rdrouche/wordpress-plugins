@@ -1,0 +1,186 @@
+/*
+ * Smart Contact Form – Public CSS
+ *
+ * Inherits all colours, typography and spacing tokens from the
+ * RDR-IT theme (style.css) via CSS custom properties (--rdr-*).
+ * No hardcoded palette here → automatic dark/light support.
+ */
+
+/* ── Loading spinner ──────────────────────────────────────── */
+.scf-form-container.scf-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100px;
+}
+
+.scf-spinner {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.scf-spinner span {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--rdr-accent);
+  opacity: .3;
+  animation: scf-bounce .9s infinite ease-in-out;
+}
+.scf-spinner span:nth-child(2) { animation-delay: .15s; }
+.scf-spinner span:nth-child(3) { animation-delay: .30s; }
+
+@keyframes scf-bounce {
+  0%,80%,100% { transform: scale(.6); opacity: .3; }
+  40%          { transform: scale(1);  opacity: 1;  }
+}
+
+/* ── Honeypot (always hidden) ─────────────────────────────── */
+.scf-hp {
+  position: absolute !important;
+  left: -9999px !important;
+  height: 0 !important;
+  overflow: hidden !important;
+  opacity: 0 !important;
+}
+
+/* ── Form layout ──────────────────────────────────────────── */
+.scf-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+/* ── Field wrapper ────────────────────────────────────────── */
+.scf-field {
+  display: flex;
+  flex-direction: column;
+  gap: .3rem;
+}
+
+.scf-field label {
+  font-size: .9rem;
+  font-weight: 600;
+  color: var(--rdr-text-primary);
+}
+
+.scf-required {
+  color: #e53e3e;
+  margin-left: 2px;
+}
+
+/*
+ * Inputs / textarea / select
+ * The theme's style.css already styles these globally with --rdr-* vars.
+ * We only add the width and box-sizing overrides needed inside the form.
+ */
+.scf-field input,
+.scf-field textarea,
+.scf-field select {
+  width: 100%;
+  box-sizing: border-box;
+  /* colours, border-radius, padding from theme globals */
+}
+
+.scf-field textarea {
+  resize: vertical;
+  min-height: 110px;
+}
+
+/* Error state — override border colour only */
+.scf-field--error input,
+.scf-field--error textarea,
+.scf-field--error select {
+  border-color: #e53e3e !important;
+  box-shadow: 0 0 0 3px rgba(229,62,62,.12) !important;
+}
+
+.scf-error {
+  font-size: .82rem;
+  color: #e53e3e;
+  min-height: 1em;
+}
+
+/* ── Footer row (reCAPTCHA notice + button) ───────────────── */
+.scf-form-footer {
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+}
+
+.scf-recaptcha-notice {
+  font-size: .75rem;
+  color: var(--rdr-text-muted);
+  margin: 0;
+}
+.scf-recaptcha-notice a {
+  color: var(--rdr-text-secondary);
+}
+
+/* ── Submit button ────────────────────────────────────────── */
+/*
+ * Base styles (colour, border-radius, font, transition) come from
+ * the theme's .button / button[type="submit"] rules.
+ * We only add layout-specific overrides.
+ */
+.scf-submit {
+  align-self: flex-start;
+  position: relative;
+  gap: .5rem;
+}
+
+.scf-submit:disabled {
+  opacity: .6;
+  cursor: not-allowed;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+/* Spinner inside button */
+.scf-submit__spinner {
+  display: none;
+  width: 15px;
+  height: 15px;
+  border: 2px solid rgba(255,255,255,.35);
+  border-top-color: #fff;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.scf-submit--loading .scf-submit__spinner {
+  display: inline-block;
+  animation: scf-spin .7s linear infinite;
+}
+
+@keyframes scf-spin { to { transform: rotate(360deg); } }
+
+/* ── Response message ─────────────────────────────────────── */
+.scf-response {
+  padding: .7rem 1rem;
+  border-radius: 8px;
+  font-size: .92rem;
+  font-weight: 500;
+  border: 1px solid transparent;
+  outline: none; /* focusable for a11y but no ring */
+}
+
+.scf-response:empty { display: none; }
+
+.scf-response--success {
+  background: var(--rdr-bg-accent);
+  color: var(--rdr-accent-2);
+  border-color: var(--rdr-accent-2);
+}
+
+.scf-response--error {
+  background: rgba(229,62,62,.08);
+  color: #e53e3e;
+  border-color: rgba(229,62,62,.35);
+}
+
+/* ── Load error ───────────────────────────────────────────── */
+.scf-load-error {
+  color: #e53e3e;
+  font-style: italic;
+}

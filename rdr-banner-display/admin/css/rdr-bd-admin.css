@@ -1,0 +1,332 @@
+/* ============================================================
+   RDR Banner Display — Admin Styles  v1.9.0
+   Works on both WP default (light) and dark admin themes.
+   Uses wp-admin CSS variables where available, with explicit
+   fallbacks so nothing is invisible regardless of the color scheme.
+   ============================================================ */
+
+/* ── Base token overrides ─────────────────────────────────── */
+.rdr-bd-wrap,
+.rdr-bd-meta-box {
+    --rdr-text:        #1d2327;   /* WP standard dark text */
+    --rdr-text-muted:  #50575e;
+    --rdr-text-light:  #646970;
+    --rdr-border:      #c3c4c7;
+    --rdr-border-light:#dcdcde;
+    --rdr-bg:          #fff;
+    --rdr-bg-alt:      #f6f7f7;
+    --rdr-bg-card:     #fff;
+    --rdr-accent:      #2271b1;   /* WP blue */
+    --rdr-accent2:     #00e5c0;
+    --rdr-success:     #00a32a;
+    --rdr-warning:     #dba617;
+    --rdr-danger:      #d63638;
+    --rdr-purple:      #8c5fce;
+    color: var(--rdr-text);
+}
+
+/* ── Page wrap ────────────────────────────────────────────── */
+.rdr-bd-wrap { max-width: 1300px; font-family: -apple-system, sans-serif; }
+
+.rdr-bd-page-title {
+    font-size: 22px !important;
+    font-weight: 700 !important;
+    color: var(--rdr-text) !important;
+    margin-bottom: 24px !important;
+    display: flex; align-items: center; gap: 4px;
+}
+.rdr-bd-logo        { color: var(--rdr-text); }
+.rdr-bd-logo-accent { color: var(--rdr-accent); }
+
+/* ── Cards ────────────────────────────────────────────────── */
+.rdr-bd-card {
+    background: var(--rdr-bg-card);
+    border: 1px solid var(--rdr-border-light);
+    border-radius: 4px;
+    padding: 20px 24px;
+    margin-bottom: 20px;
+    box-shadow: 0 1px 3px rgba(0,0,0,.06);
+    color: var(--rdr-text);
+}
+.rdr-bd-card h2 {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--rdr-accent);
+    margin: 0 0 14px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--rdr-border-light);
+}
+.rdr-bd-card-header {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 16px;
+}
+.rdr-bd-card-header h2 { margin: 0; border: none; padding: 0; }
+
+/* ── KPI grid ─────────────────────────────────────────────── */
+.rdr-bd-kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 14px; margin-bottom: 20px;
+}
+.rdr-bd-kpi-card {
+    background: var(--rdr-bg-alt);
+    border: 1px solid var(--rdr-border-light);
+    border-radius: 4px; padding: 16px; text-align: center;
+}
+.rdr-bd-kpi-value { font-size: 26px; font-weight: 800; color: var(--rdr-accent); line-height: 1.1; }
+.rdr-bd-kpi-label { font-size: 11px; color: var(--rdr-text-muted); text-transform: uppercase; letter-spacing: .6px; margin-top: 4px; }
+
+/* ── Table ────────────────────────────────────────────────── */
+.rdr-bd-table { border-collapse: collapse; width: 100%; background: transparent !important; border: none !important; }
+.rdr-bd-table thead th {
+    background: var(--rdr-bg-alt) !important;
+    color: var(--rdr-text-muted) !important;
+    font-size: 11px; text-transform: uppercase; letter-spacing: .5px;
+    padding: 9px 12px !important;
+    border-bottom: 1px solid var(--rdr-border) !important;
+}
+.rdr-bd-table tbody tr { border-bottom: 1px solid var(--rdr-border-light) !important; transition: background .12s; }
+.rdr-bd-table tbody tr:hover { background: rgba(34,113,177,.04) !important; }
+.rdr-bd-table tbody td {
+    padding: 9px 12px !important;
+    color: var(--rdr-text) !important;
+    background: transparent !important; vertical-align: middle !important;
+}
+
+/* ── Status badges ────────────────────────────────────────── */
+.rdr-bd-status {
+    display: inline-block; padding: 2px 8px; border-radius: 20px;
+    font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .4px;
+}
+.rdr-bd-status--active  { background: rgba(0,163,42,.12);  color: #00a32a; }
+.rdr-bd-status--pending { background: rgba(140,95,206,.12); color: #8c5fce; }
+.rdr-bd-status--paused  { background: rgba(219,166,23,.15); color: #8a6700; }
+.rdr-bd-status--ended   { background: rgba(0,0,0,.06);      color: var(--rdr-text-muted); }
+
+/* ── Quick links ──────────────────────────────────────────── */
+.rdr-bd-quick-links { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 20px; }
+
+/* ── Filters ──────────────────────────────────────────────── */
+.rdr-bd-filters {
+    display: flex; align-items: center; gap: 16px;
+    background: var(--rdr-bg-alt); border: 1px solid var(--rdr-border-light);
+    border-radius: 4px; padding: 12px 18px; margin-bottom: 18px;
+    color: var(--rdr-text);
+}
+.rdr-bd-filters label { color: var(--rdr-text-muted); font-size: 13px; }
+.rdr-bd-filters select { margin-left: 6px; }
+
+/* ── Meta box ─────────────────────────────────────────────── */
+.rdr-bd-meta-box { padding: 4px 0; color: var(--rdr-text); }
+
+.rdr-bd-row { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 14px; }
+
+.rdr-bd-field {
+    display: flex; flex-direction: column; gap: 4px;
+    flex: 1; min-width: 130px;
+}
+.rdr-bd-field label {
+    font-size: 11px; font-weight: 600;
+    color: var(--rdr-text-muted);
+    text-transform: uppercase; letter-spacing: .4px;
+}
+.rdr-bd-field input[type="number"],
+.rdr-bd-field select { max-width: 200px; }
+
+/* Section header (title + add button on same line) */
+.rdr-bd-section-header {
+    display: flex; align-items: center; justify-content: space-between;
+    margin: 16px 0 12px;
+}
+.rdr-bd-section-title {
+    font-size: 13px; font-weight: 700; margin: 0;
+    color: var(--rdr-text);
+}
+.rdr-bd-hint {
+    font-size: 11px; font-weight: 400;
+    color: var(--rdr-text-light); margin-left: 8px;
+}
+
+/* ── Item rows ────────────────────────────────────────────── */
+.rdr-bd-item-row {
+    background: var(--rdr-bg-alt);
+    border: 1px solid var(--rdr-border);
+    border-radius: 4px; padding: 12px 14px; margin-bottom: 10px;
+}
+.rdr-bd-item-header {
+    display: flex; align-items: center; gap: 10px; margin-bottom: 8px; flex-wrap: wrap;
+}
+.rdr-bd-item-type { min-width: 170px; }
+
+.rdr-bd-item-flag {
+    display: inline-flex; align-items: center; gap: 5px;
+    font-size: 12px; color: var(--rdr-text);
+    background: var(--rdr-bg); border: 1px solid var(--rdr-border);
+    border-radius: 3px; padding: 3px 8px; cursor: pointer;
+    white-space: nowrap; transition: border-color .12s;
+}
+.rdr-bd-item-flag:hover { border-color: var(--rdr-accent); }
+.rdr-bd-item-flag input { margin: 0; cursor: pointer; }
+
+.rdr-bd-flag--adblock {
+    border-color: rgba(219,166,23,.5); background: rgba(219,166,23,.06); color: #6b4f00;
+}
+.rdr-bd-flag--adblock:hover { border-color: var(--rdr-warning); }
+
+.rdr-bd-remove-item {
+    margin-left: auto !important;
+    color: var(--rdr-danger) !important;
+    font-size: 12px !important; background: none !important;
+    border: none !important; cursor: pointer !important; padding: 0 !important;
+}
+
+.rdr-bd-item-content {
+    width: 100% !important; box-sizing: border-box;
+    font-family: 'Courier New', monospace; font-size: 12px;
+    background: var(--rdr-bg) !important; color: var(--rdr-text) !important;
+    border: 1px solid var(--rdr-border) !important; border-radius: 3px;
+}
+
+/* ── Meta footer (preview + shortcode) ───────────────────── */
+.rdr-bd-meta-footer {
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 10px; margin-top: 14px;
+}
+.rdr-bd-preview-bar { display: flex; align-items: center; gap: 10px; }
+.rdr-bd-preview-hint { font-size: 11px; color: var(--rdr-text-light); }
+
+.rdr-bd-shortcode-hint {
+    background: rgba(34,113,177,.06); border: 1px solid rgba(34,113,177,.2);
+    border-radius: 4px; padding: 7px 12px; font-size: 13px; color: var(--rdr-text);
+}
+.rdr-bd-shortcode-hint code {
+    background: rgba(34,113,177,.1); padding: 1px 6px;
+    border-radius: 3px; font-size: 13px; color: var(--rdr-accent);
+}
+
+/* ── Preview output ───────────────────────────────────────── */
+#rdr-bd-preview-output {
+    margin-top: 12px; border: 1px solid var(--rdr-border);
+    border-radius: 4px; overflow: hidden; color: var(--rdr-text);
+}
+.rdr-bd-preview-result { padding: 12px 16px; }
+.rdr-bd-preview-result p { color: var(--rdr-text); margin: 0 0 6px; }
+.rdr-bd-preview-item { border-top: 1px solid var(--rdr-border-light); padding: 10px 0; }
+.rdr-bd-preview-item details { margin: 4px 0; }
+.rdr-bd-preview-item summary { cursor: pointer; font-size: 12px; color: var(--rdr-text-muted); }
+.rdr-bd-preview-item pre { color: var(--rdr-text); background: var(--rdr-bg-alt); padding: 8px; border-radius: 3px; font-size: 11px; }
+
+/* ── Note / memo field ────────────────────────────────────── */
+.rdr-bd-field--full { width: 100%; margin-bottom: 12px; }
+.rdr-bd-field--full label {
+    display: block; font-size: 11px; font-weight: 600;
+    color: var(--rdr-text-muted); text-transform: uppercase;
+    letter-spacing: .4px; margin-bottom: 4px;
+}
+.rdr-bd-field--full textarea {
+    width: 100%; box-sizing: border-box;
+    background: #fffdf0 !important; border: 1px dashed #c9a84c !important;
+    border-radius: 3px; font-size: 13px; color: #3d2f00 !important;
+    padding: 7px 10px; resize: vertical;
+}
+
+/* ── Modal ────────────────────────────────────────────────── */
+.rdr-bd-modal {
+    position: fixed; inset: 0; background: rgba(0,0,0,.5);
+    z-index: 100000; display: flex; align-items: center; justify-content: center; padding: 20px;
+}
+.rdr-bd-modal-content {
+    background: var(--rdr-bg); color: var(--rdr-text);
+    border-radius: 4px; padding: 28px 32px; width: 100%; max-width: 680px;
+    max-height: 90vh; overflow-y: auto; box-shadow: 0 8px 40px rgba(0,0,0,.2);
+}
+.rdr-bd-modal-content h2 { margin: 0 0 20px; font-size: 18px; color: var(--rdr-text); }
+.rdr-bd-form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 20px; }
+.rdr-bd-form-grid .rdr-bd-field { min-width: unset; }
+.rdr-bd-form-grid label { color: var(--rdr-text); font-size: 13px; font-weight: 600; }
+.rdr-bd-modal-footer { display: flex; gap: 10px; border-top: 1px solid var(--rdr-border-light); padding-top: 16px; }
+
+/* ── Role manager ─────────────────────────────────────────── */
+.rdr-bd-role-manager { display: flex; flex-wrap: wrap; gap: 8px; }
+.rdr-bd-role-manager label {
+    display: flex; align-items: center; gap: 6px;
+    background: var(--rdr-bg-alt); border: 1px solid var(--rdr-border);
+    border-radius: 3px; padding: 5px 10px; font-size: 13px;
+    color: var(--rdr-text); cursor: pointer;
+}
+.rdr-bd-role-manager label:hover { border-color: var(--rdr-accent); }
+.rdr-bd-role-manager code { font-size: 11px; color: var(--rdr-text-muted); }
+
+/* ── Actions ──────────────────────────────────────────────── */
+.rdr-bd-actions { white-space: nowrap; }
+.rdr-bd-actions .button { margin-right: 4px !important; }
+
+/* ── Form table ───────────────────────────────────────────── */
+.rdr-bd-wrap .form-table th { width: 220px; font-weight: 600; color: var(--rdr-text); }
+.rdr-bd-wrap .form-table td,
+.rdr-bd-wrap .form-table .description { color: var(--rdr-text); }
+.rdr-bd-wrap .form-table .description { color: var(--rdr-text-muted); }
+
+/* ── Reset stats button ───────────────────────────────────── */
+.rdr-bd-reset-stats-btn { color: var(--rdr-danger) !important; }
+
+/* ── Per-item caps ────────────────────────────────────────── */
+.rdr-bd-item-caps {
+    display: flex; gap: 8px; align-items: center;
+}
+.rdr-bd-cap-label {
+    display: inline-flex; align-items: center; gap: 4px;
+    font-size: 11px; color: var(--rdr-text-muted);
+    background: var(--rdr-bg); border: 1px solid var(--rdr-border);
+    border-radius: 3px; padding: 2px 6px;
+}
+.rdr-bd-cap-label span { white-space: nowrap; }
+.rdr-bd-cap-label input { width: 60px !important; max-width: 60px !important; padding: 1px 4px !important; }
+
+/* ── Reset stats bar ──────────────────────────────────────── */
+.rdr-bd-reset-bar {
+    display: flex; align-items: center; gap: 12px;
+    margin-bottom: 14px; padding: 10px 14px;
+    background: rgba(214,54,56,.05); border: 1px solid rgba(214,54,56,.2);
+    border-radius: 4px;
+}
+
+/* ── Per-item campaign row ────────────────────────────────── */
+.rdr-bd-item-campaign {
+    display: flex;
+    align-items: center;
+    margin: 6px 0 6px;
+    padding: 5px 8px;
+    background: rgba(34,113,177,.05);
+    border: 1px solid rgba(34,113,177,.15);
+    border-radius: 3px;
+}
+.rdr-bd-item-campaign-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--rdr-text-muted);
+    white-space: nowrap;
+}
+.rdr-bd-item-campaign-label select {
+    font-size: 12px;
+    min-width: 220px;
+}
+
+/* ── Adblock-only flag (purple) ───────────────────────────── */
+.rdr-bd-flag--adblock-only {
+    border-color: rgba(140,95,206,.4);
+    background: rgba(140,95,206,.06);
+    color: #5a3d8a;
+}
+.rdr-bd-flag--adblock-only:hover { border-color: #8c5fce; background: rgba(140,95,206,.12); }
+
+/* ── Force-if-adblock flag (orange) ──────────────────────── */
+.rdr-bd-flag--force-adblock {
+    border-color: rgba(219,166,23,.4);
+    background: rgba(219,166,23,.06);
+    color: #7a5200;
+}
+.rdr-bd-flag--force-adblock:hover { border-color: #dba617; background: rgba(219,166,23,.12); }

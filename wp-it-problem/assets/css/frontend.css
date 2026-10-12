@@ -1,0 +1,534 @@
+/*
+ * WP IT Problem — frontend.css
+ *
+ * Utilise directement les variables --rdr-* du thème RDR-IT.
+ * Pas de couche d'abstraction intermédiaire.
+ * Dark mode = défaut (:root). Light mode = [data-theme="light"].
+ *
+ * @package WP_IT_Problem
+ * @since   1.0.3
+ */
+
+/* ============================================================
+   BADGES
+   ============================================================ */
+.itpb-badge {
+    display:        inline-flex;
+    align-items:    center;
+    gap:            5px;
+    font-family:    'DM Sans', Arial, sans-serif;
+    font-size:      11px;
+    font-weight:    700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    padding:        3px 9px;
+    border-radius:  20px;
+    border:         1px solid;
+    line-height:    1.4;
+}
+
+.itpb-badge-revealed {
+    color:        #00e5c0;
+    border-color: rgba(0,229,192,0.35);
+    background:   rgba(0,229,192,0.08);
+}
+
+.itpb-badge-pending {
+    color:        #dba617;
+    border-color: rgba(219,166,23,0.35);
+    background:   rgba(219,166,23,0.08);
+}
+
+/* ============================================================
+   COUNTDOWN BLOCK
+   ============================================================ */
+.itpb-countdown-wrap {
+    background:    var(--rdr-bg-card, #1c2128);
+    border:        1px solid var(--rdr-border-strong, rgba(255,255,255,0.15));
+    border-left:   4px solid #dba617;
+    border-radius: 12px;
+    padding:       28px 24px 24px;
+    margin:        32px 0;
+    box-shadow:    var(--rdr-shadow-card, 0 2px 8px rgba(0,0,0,0.3));
+    font-family:   'DM Sans', Arial, sans-serif;
+}
+
+.itpb-countdown-header {
+    margin-bottom: 16px;
+}
+
+.itpb-countdown-units {
+    display:     flex;
+    align-items: center;
+    gap:         4px;
+    flex-wrap:   wrap;
+    margin:      16px 0;
+}
+
+.itpb-unit {
+    display:        flex;
+    flex-direction: column;
+    align-items:    center;
+    min-width:      64px;
+    background:     var(--rdr-bg-surface, #161b22);
+    border:         1px solid var(--rdr-border, rgba(255,255,255,0.07));
+    border-radius:  8px;
+    padding:        12px 8px 8px;
+}
+
+.itpb-unit-value {
+    font-family: 'JetBrains Mono', monospace;
+    font-size:   36px;
+    font-weight: 700;
+    line-height: 1;
+    color:       var(--rdr-accent, #2ea8ff);
+    min-width:   2ch;
+    text-align:  center;
+    display:     block;
+    transition:  color 0.2s ease;
+}
+
+.itpb-unit-label {
+    font-size:      10px;
+    font-weight:    600;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color:          var(--rdr-text-secondary, #8b949e);
+    margin-top:     6px;
+}
+
+.itpb-unit-sep {
+    font-size:      28px;
+    font-weight:    700;
+    color:          var(--rdr-text-secondary, #8b949e);
+    padding-bottom: 16px;
+    user-select:    none;
+    align-self:     flex-end;
+}
+
+.itpb-reveal-date {
+    font-size: 12px;
+    color:     var(--rdr-text-secondary, #8b949e);
+    margin:    8px 0 0;
+}
+
+.itpb-reveal-date time {
+    color:       var(--rdr-text-primary, #e6edf3);
+    font-family: 'JetBrains Mono', monospace;
+}
+
+.itpb-countdown-standalone {
+    border-left-color: var(--rdr-accent, #2ea8ff);
+}
+
+.itpb-countdown-problem-title {
+    font-size:   13px;
+    font-weight: 600;
+    margin:      0 0 12px;
+    color:       var(--rdr-text-primary, #e6edf3);
+}
+
+.itpb-countdown-problem-title a {
+    color:           var(--rdr-accent, #2ea8ff) !important;
+    text-decoration: none !important;
+}
+
+.itpb-already-revealed {
+    border-left-color: var(--rdr-accent-2, #00e5c0);
+}
+
+.itpb-already-revealed p {
+    font-size: 14px;
+    color:     var(--rdr-text-primary, #e6edf3);
+    margin:    0;
+}
+
+.itpb-loading,
+.itpb-revealed-notice {
+    font-size:  15px;
+    color:      var(--rdr-text-secondary, #8b949e);
+    margin:     0;
+    font-style: italic;
+}
+
+/* ============================================================
+   ANSWER BLOCK
+   ============================================================ */
+.itpb-answer-wrap {
+    background:    var(--rdr-bg-card, #1c2128);
+    border:        1px solid var(--rdr-border-strong, rgba(255,255,255,0.15));
+    border-left:   4px solid #00e5c0;
+    border-radius: 12px;
+    padding:       28px 24px 24px;
+    margin:        32px 0;
+    box-shadow:    var(--rdr-shadow-card, 0 2px 8px rgba(0,0,0,0.3));
+    font-family:   'DM Sans', Arial, sans-serif;
+}
+
+.itpb-answer-hidden {
+    display: none !important;
+}
+
+.itpb-answer-header {
+    margin-bottom:  20px;
+    padding-bottom: 16px;
+    border-bottom:  1px solid var(--rdr-border, rgba(255,255,255,0.07));
+}
+
+.itpb-answer-content {
+    color:       var(--rdr-text-primary, #e6edf3);
+    line-height: 1.7;
+}
+
+.itpb-answer-content h2,
+.itpb-answer-content h3,
+.itpb-answer-content h4 {
+    color: var(--rdr-text-primary, #e6edf3);
+}
+
+.itpb-cron-lag {
+    border-left-color: #dba617;
+}
+
+.itpb-cron-lag-msg {
+    font-size:  14px;
+    color:      var(--rdr-text-secondary, #8b949e);
+    margin:     0;
+    font-style: italic;
+}
+
+/* ============================================================
+   PROBLEM GRID — [itpb_list]
+   Calqué sur le design des cards tutoriels du thème RDR-IT.
+   Polices et variables --rdr-* identiques au thème.
+   ============================================================ */
+.itpb-list-wrap {
+    font-family: 'DM Sans', Arial, sans-serif;
+}
+
+.itpb-grid {
+    display:               grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap:                   20px;
+}
+
+/* ── Card ── */
+.itpb-card {
+    position:       relative;
+    display:        flex;
+    flex-direction: column;
+    background:     var(--rdr-bg-card, #1c2128);
+    border:         1px solid var(--rdr-border, rgba(255,255,255,0.07));
+    border-radius:  12px;
+    box-shadow:     var(--rdr-shadow-card, 0 2px 8px rgba(0,0,0,0.3));
+    overflow:       hidden;
+    transition:     border-color 0.2s ease,
+                    box-shadow 0.2s ease,
+                    transform 0.2s ease;
+}
+
+.itpb-card:hover {
+    border-color: var(--rdr-border-strong, rgba(255,255,255,0.15));
+    box-shadow:   var(--rdr-shadow, 0 8px 32px rgba(0,0,0,0.4));
+    transform:    translateY(-2px);
+}
+
+/* Barre gauche colorée selon statut */
+.itpb-card-pending  { border-left: 3px solid #dba617; }
+.itpb-card-revealed { border-left: 3px solid #00e5c0; }
+
+/* ── Top : badge + tags infra ── */
+.itpb-card-top {
+    display:         flex;
+    align-items:     center;
+    justify-content: space-between;
+    flex-wrap:       wrap;
+    gap:             8px;
+    padding:         14px 16px 0;
+}
+
+.itpb-card-infra-tags {
+    display:   flex;
+    flex-wrap: wrap;
+    gap:       5px;
+}
+
+/* Tag infra — même style que les catégories du thème */
+.itpb-infra-tag {
+    font-family:    'DM Sans', Arial, sans-serif;
+    font-size:      11px;
+    font-weight:    600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color:          var(--rdr-text-secondary, #8b949e);
+    background:     var(--rdr-bg-surface, #161b22);
+    border:         1px solid var(--rdr-border, rgba(255,255,255,0.07));
+    border-radius:  4px;
+    padding:        2px 7px;
+    line-height:    1.5;
+    white-space:    nowrap;
+}
+
+/* ── Body : titre + excerpt ── */
+.itpb-card-body {
+    flex:    1;
+    padding: 12px 16px 10px;
+}
+
+/* Titre en Syne comme les titres du thème */
+.itpb-card-title {
+    font-family:    'Syne', sans-serif;
+    font-size:      17px;
+    font-weight:    700;
+    line-height:    1.3;
+    letter-spacing: -0.2px;
+    margin:         0 0 8px;
+}
+
+.itpb-card-title a {
+    color:           var(--rdr-text-primary, #e6edf3) !important;
+    text-decoration: none !important;
+    transition:      color 0.2s ease !important;
+    position:        relative;
+    z-index:         1;
+}
+
+.itpb-card-title a:hover {
+    color: var(--rdr-accent, #2ea8ff) !important;
+}
+
+.itpb-card-excerpt {
+    font-family:        'DM Sans', Arial, sans-serif;
+    font-size:          13.5px;
+    line-height:        1.65;
+    color:              var(--rdr-text-secondary, #8b949e);
+    margin:             0;
+    display:            -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow:           hidden;
+}
+
+/* ── Footer : difficulté + date ── */
+.itpb-card-footer {
+    display:         flex;
+    align-items:     center;
+    justify-content: space-between;
+    flex-wrap:       wrap;
+    gap:             8px;
+    padding:         10px 16px 14px;
+    border-top:      1px solid var(--rdr-border, rgba(255,255,255,0.07));
+    margin-top:      auto;
+}
+
+/* Badges difficulté */
+.itpb-meta-difficulty {
+    font-family:    'DM Sans', Arial, sans-serif;
+    font-size:      11px;
+    font-weight:    700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding:        2px 8px;
+    border-radius:  4px;
+    border:         1px solid;
+}
+
+.itpb-difficulty-beginner {
+    color:        #00e5c0;
+    border-color: rgba(0,229,192,0.4);
+    background:   rgba(0,229,192,0.07);
+}
+
+.itpb-difficulty-intermediate {
+    color:        #dba617;
+    border-color: rgba(219,166,23,0.4);
+    background:   rgba(219,166,23,0.07);
+}
+
+.itpb-difficulty-expert {
+    color:        #d63638;
+    border-color: rgba(214,54,56,0.4);
+    background:   rgba(214,54,56,0.07);
+}
+
+.itpb-card-date {
+    font-family: 'JetBrains Mono', monospace;
+    font-size:   11px;
+    color:       var(--rdr-text-muted, #484f58);
+}
+
+/* Overlay — toute la card cliquable, titre reste focusable */
+.itpb-card-overlay {
+    position: absolute;
+    inset:    0;
+    z-index:  0;
+}
+
+/* État vide */
+.itpb-list-empty {
+    color:     var(--rdr-text-secondary, #8b949e);
+    font-size: 14px;
+    padding:   16px 0;
+}
+
+/* ── Pagination ── */
+.itpb-pagination {
+    margin-top: 28px;
+    display:    flex;
+    flex-wrap:  wrap;
+    gap:        6px;
+}
+
+.itpb-pagination .page-numbers {
+    display:         inline-flex;
+    align-items:     center;
+    justify-content: center;
+    min-width:       36px;
+    height:          36px;
+    padding:         0 10px;
+    border-radius:   6px;
+    font-family:     'DM Sans', Arial, sans-serif;
+    font-size:       13px;
+    font-weight:     600;
+    color:           var(--rdr-text-secondary, #8b949e) !important;
+    border:          1px solid var(--rdr-border, rgba(255,255,255,0.07)) !important;
+    background:      var(--rdr-bg-card, #1c2128);
+    text-decoration: none !important;
+    transition:      border-color 0.2s, color 0.2s, background 0.2s;
+}
+
+.itpb-pagination .page-numbers:hover {
+    color:        var(--rdr-accent, #2ea8ff) !important;
+    border-color: var(--rdr-accent, #2ea8ff) !important;
+}
+
+.itpb-pagination .page-numbers.current {
+    color:        #fff !important;
+    background:   var(--rdr-accent, #2ea8ff) !important;
+    border-color: var(--rdr-accent, #2ea8ff) !important;
+}
+
+/* Erreur shortcode (admin seulement) */
+.itpb-shortcode-error {
+    font-family: 'JetBrains Mono', monospace;
+    font-size:   13px;
+}
+
+/* ============================================================
+   LIGHT MODE — [data-theme="light"]
+   Valeurs exactes du thème RDR-IT light
+   ============================================================ */
+[data-theme="light"] .itpb-countdown-wrap,
+[data-theme="light"] .itpb-answer-wrap {
+    background:    #ffffff;
+    border-color:  rgba(0,0,0,0.15);
+    box-shadow:    0 2px 8px rgba(0,0,0,0.08);
+}
+
+[data-theme="light"] .itpb-unit {
+    background:   #f8fafc;
+    border-color: rgba(0,0,0,0.1);
+}
+
+[data-theme="light"] .itpb-unit-value      { color: #1e73be; }
+[data-theme="light"] .itpb-reveal-date      { color: #4a5568; }
+[data-theme="light"] .itpb-reveal-date time { color: #1a1a2e; }
+
+[data-theme="light"] .itpb-badge-revealed {
+    color:        #0a9b7d;
+    border-color: rgba(10,155,125,0.3);
+    background:   rgba(10,155,125,0.08);
+}
+
+[data-theme="light"] .itpb-card {
+    background:   #ffffff;
+    border-color: rgba(0,0,0,0.08);
+    box-shadow:   0 2px 8px rgba(0,0,0,0.08);
+}
+
+[data-theme="light"] .itpb-card:hover {
+    border-color: rgba(0,0,0,0.15);
+    box-shadow:   0 4px 20px rgba(0,0,0,0.1);
+}
+
+[data-theme="light"] .itpb-card-title a     { color: #1a1a2e !important; }
+[data-theme="light"] .itpb-card-excerpt      { color: #4a5568; }
+[data-theme="light"] .itpb-card-footer       { border-top-color: rgba(0,0,0,0.08); }
+[data-theme="light"] .itpb-card-date         { color: #a0aec0; }
+
+[data-theme="light"] .itpb-infra-tag {
+    background:   #f8fafc;
+    border-color: rgba(0,0,0,0.08);
+    color:        #4a5568;
+}
+
+[data-theme="light"] .itpb-difficulty-beginner {
+    color:        #0a9b7d;
+    border-color: rgba(10,155,125,0.4);
+    background:   rgba(10,155,125,0.07);
+}
+
+[data-theme="light"] .itpb-pagination .page-numbers {
+    background:   #ffffff;
+    border-color: rgba(0,0,0,0.08) !important;
+    color:        #4a5568 !important;
+}
+
+[data-theme="light"] .itpb-countdown-wrap   { border-left-color: #dba617; }
+[data-theme="light"] .itpb-answer-wrap       { border-left-color: #0a9b7d; }
+
+[data-theme="light"] .itpb-answer-header {
+    border-bottom-color: rgba(0,0,0,0.08);
+}
+
+[data-theme="light"] .itpb-answer-content,
+[data-theme="light"] .itpb-answer-content h2,
+[data-theme="light"] .itpb-answer-content h3,
+[data-theme="light"] .itpb-answer-content h4 {
+    color: #1a1a2e;
+}
+
+[data-theme="light"] .itpb-cron-lag-msg { color: #4a5568; }
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 780px) {
+    .itpb-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 600px) {
+    .itpb-countdown-wrap,
+    .itpb-answer-wrap {
+        padding:       18px 14px;
+        border-radius: 10px;
+    }
+
+    .itpb-unit        { min-width: 52px; padding: 10px 6px 6px; }
+    .itpb-unit-value  { font-size: 28px; }
+    .itpb-unit-sep    { font-size: 22px; }
+
+    .itpb-card-body,
+    .itpb-card-top,
+    .itpb-card-footer { padding-left: 14px; padding-right: 14px; }
+
+    .itpb-countdown-units { gap: 2px; }
+}
+
+@media (max-width: 360px) {
+    .itpb-unit       { min-width: 44px; }
+    .itpb-unit-value { font-size: 24px; }
+}
+
+/* ============================================================
+   PRINT
+   ============================================================ */
+@media print {
+    .itpb-countdown-wrap { display: none !important; }
+    .itpb-answer-wrap {
+        border:     1px solid #ccc;
+        box-shadow: none;
+        background: #fff;
+        color:      #000;
+    }
+}

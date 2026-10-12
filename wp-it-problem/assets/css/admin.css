@@ -1,0 +1,145 @@
+/*
+ * WP IT Problem — admin.css
+ *
+ * Styles for:
+ *  - Meta box enhancements (reveal date, infra, answer link)
+ *  - Admin list columns (badges, status)
+ *  - Difficulty radio buttons
+ *  - Settings page
+ *
+ * Scoped to WP admin — no RDR-IT theme variables needed here,
+ * we use WP admin color variables where possible.
+ *
+ * @package WP_IT_Problem
+ * @since   1.0.0
+ */
+
+/* ============================================================
+   META BOX — REVEAL DATE
+   ============================================================ */
+
+/* Shortcut buttons row */
+#itpb_reveal_at + p {
+    margin-top: 6px;
+}
+
+/* Past-date warning state (set via JS) */
+#itpb_reveal_at[style*="border-color: rgb(214, 54, 56)"] {
+    background: rgba(214, 54, 56, 0.05);
+}
+
+/* ============================================================
+   META BOX — LINKED ANSWER
+   ============================================================ */
+#itpb_answer_link .inside {
+    padding: 10px 12px;
+}
+
+#itpb_answer_link p {
+    margin: 6px 0;
+    font-size: 13px;
+}
+
+#itpb_answer_link .button {
+    margin-top: 4px;
+}
+
+/* Orphaned answer notice */
+#itpb_back_to_problem .inside p {
+    font-size: 13px;
+    margin: 6px 0;
+}
+
+/* ============================================================
+   DIFFICULTY META BOX — RADIO BUTTONS
+   ============================================================ */
+.itpb-difficulty-radios {
+    padding: 4px 0;
+}
+
+.itpb-difficulty-radios label {
+    display:     block;
+    padding:     5px 0;
+    font-size:   13px;
+    cursor:      pointer;
+    line-height: 1.4;
+}
+
+.itpb-difficulty-radios input[type="radio"] {
+    margin-right: 6px;
+    cursor:       pointer;
+}
+
+.itpb-difficulty-radios label:hover {
+    color: #2271b1;
+}
+
+/* ============================================================
+   ADMIN LIST COLUMNS — BADGES & STATUS
+   ============================================================ */
+
+/* Revealed status */
+.column-itpb_status span,
+.column-itpb_answer a,
+.column-itpb_answer_status span,
+.column-itpb_parent_problem a {
+    font-size: 12px;
+}
+
+/* "+ Create" link in answer column — red to draw attention */
+.column-itpb_answer a[style*="color:#d63638"] {
+    font-weight: 600;
+}
+
+/* ============================================================
+   SETTINGS PAGE
+   ============================================================ */
+.wrap h1 {
+    /* Already styled by WP — just ensure spacing */
+    margin-bottom: 16px;
+}
+
+/* Database section */
+.wrap hr {
+    margin: 24px 0;
+    border-color: #c3c4c7;
+}
+
+.wrap h2 {
+    font-size: 1.1em;
+    margin-bottom: 12px;
+}
+
+/* Settings table alignment */
+.form-table th {
+    width: 240px;
+}
+
+/* ============================================================
+   ADMIN NOTICES
+   ============================================================ */
+.notice.itpb-notice p {
+    font-size: 13px;
+}
+
+/* ============================================================
+   GENERAL — scoped to ITPB post types only
+   (class added by WP on <body> in admin)
+   ============================================================ */
+
+/* Highlight the "Answer" column header */
+.post-type-it_problem th#itpb_answer {
+    width: 110px;
+}
+
+.post-type-it_problem th#itpb_reveal_at {
+    width: 160px;
+}
+
+.post-type-it_problem th#itpb_status {
+    width: 130px;
+}
+
+.post-type-it_problem th#itpb_infra {
+    width: 140px;
+}

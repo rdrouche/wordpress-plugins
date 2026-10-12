@@ -1,0 +1,21 @@
+.wp-tuto-markdown { line-height: 1.7; }
+.wp-tuto-markdown h1,.wp-tuto-markdown h2,.wp-tuto-markdown h3,.wp-tuto-markdown h4,.wp-tuto-markdown h5,.wp-tuto-markdown h6 { margin-top: 1.4em; margin-bottom: .5em; }
+.wp-tuto-markdown p { margin: .8em 0; }
+.wp-tuto-markdown code { background: #f3f4f6; padding: .15em .4em; border-radius: 3px; font-size: .9em; }
+.wp-tuto-markdown pre { background: #1e1e1e; color: #d4d4d4; padding: 1em 1.2em; border-radius: 6px; overflow-x: auto; margin: 1em 0; }
+.wp-tuto-markdown pre code { background: none; padding: 0; color: inherit; font-size: .88em; }
+.wp-tuto-markdown blockquote { border-left: 4px solid #d1d5db; margin: 1em 0; padding: .5em 1em; color: #6b7280; }
+.wp-tuto-markdown ul,.wp-tuto-markdown ol { padding-left: 1.5em; margin: .8em 0; }
+.wp-tuto-markdown table { border-collapse: collapse; width: 100%; margin: 1em 0; }
+.wp-tuto-markdown th,.wp-tuto-markdown td { border: 1px solid #d1d5db; padding: .5em .8em; text-align: left; }
+.wp-tuto-markdown th { background: #f3f4f6; font-weight: 600; }
+.wp-tuto-markdown img { max-width: 100%; height: auto; }
+.wp-tuto-markdown hr { border: none; border-top: 1px solid #e5e7eb; margin: 1.5em 0; }
+.wp-tuto-markdown del { color: #9ca3af; }
+.wp-tuto-markdown .wp-tuto-table-wrap { overflow-x: auto; }
+
+/* Mode sombre */
+[data-theme="dark"] .wp-tuto-markdown code { background: #2d2d2d; color: #e0e0e0; }
+[data-theme="dark"] .wp-tuto-markdown th { background: #2d2d2d; }
+[data-theme="dark"] .wp-tuto-markdown th,.wp-tuto-markdown td { border-color: #444; }
+[data-theme="dark"] .wp-tuto-markdown blockquote { border-color: #555; color: #9ca3af; }

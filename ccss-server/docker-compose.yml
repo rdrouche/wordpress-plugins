@@ -1,0 +1,65 @@
+version: '3.8'
+
+services:
+  ccss-server:
+    build: .
+    image: ccss-self-hosted:latest
+    container_name: ccss-server
+    restart: unless-stopped
+
+    ports:
+      # Port externe : interne
+      # Changer 3000 si déjà utilisé sur votre hôte
+      - "3000:3000"
+
+    environment:
+      NODE_ENV: production
+
+      # ── Niveau de log : debug | info | warn | error ─────────────────────────
+      # Mettre "debug" pour voir chaque étape, "info" en production normale
+      LOG_LEVEL: info
+
+      # ── Nb de Chromium tournant en même temps ───────────────────────────────
+      # Augmenter selon la RAM disponible (1 Chromium ≈ 200-400 Mo RAM)
+      # 2 = safe pour 2 Go RAM, 4 = ok pour 4 Go RAM
+      CONCURRENCY: 2
+
+      # ── Timeout max par génération (ms) ────────────────────────────────────
+      GENERATION_TIMEOUT_MS: 60000
+
+      # ── Secret HMAC partagé avec WordPress ─────────────────────────────────
+      # Générer avec : openssl rand -hex 32
+      # Laisser vide pour désactiver la vérification (réseau privé uniquement)
+      CCSS_SECRET: ""
+
+    volumes:
+      # Persistance des logs en dehors du conteneur
+      - ./logs:/logs
+
+    # Chromium a besoin de /dev/shm suffisamment grand
+    shm_size: '512mb'
+
+    # Limites ressources (adapter à votre serveur)
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+          cpus: '2.0'
+        reservations:
+          memory: 512M
+
+    # Pas besoin d'accès réseau particulier, mais le conteneur doit
+    # pouvoir joindre vos sites WordPress
+    # Si vos WP sont sur le même Docker network, ajouter ici :
+    # networks:
+    #   - wordpress_network
+
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "50m"
+        max-file: "5"
+
+# networks:
+#   wordpress_network:
+#     external: true

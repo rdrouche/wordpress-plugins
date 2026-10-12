@@ -1,0 +1,112 @@
+/**
+ * RDR-IT Glossaire — Switch flottant
+ * Style identique au plugin rdr-syntax-highlighter (pill 40px)
+ * Le positionnement left/right/bottom est injecté en inline style par JS
+ */
+
+/* ============================================================
+   SWITCH FLOTTANT — pill identique au #rdr-sh-switch.rdr-sh-switch--floating
+   ============================================================ */
+#rdrg-float-switch {
+    position:        fixed;
+    z-index:         9998; /* 1 en-dessous du plugin coloration (9999) */
+    display:         flex;
+    align-items:     center;
+    gap:             10px;
+    background:      var(--rdr-sh-sw-bg, rgba(22,27,34,0.95));
+    border:          1px solid var(--rdr-sh-sw-border, rgba(255,255,255,0.1));
+    border-radius:   40px;
+    padding:         8px 14px 8px 16px;
+    box-shadow:      0 4px 20px rgba(0,0,0,0.2);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    cursor:          default;
+    user-select:     none;
+    transition:      box-shadow 0.2s ease;
+    font-family:     'DM Sans', sans-serif;
+}
+
+#rdrg-float-switch:hover {
+    box-shadow: 0 6px 28px rgba(0,0,0,0.3);
+}
+
+/* Masqué sur mobile — même breakpoint que rdr-sh */
+@media (max-width: 767px) {
+    #rdrg-float-switch { display: none !important; }
+}
+
+/* ============================================================
+   LABEL
+   ============================================================ */
+#rdrg-float-switch .rdrg-float-label {
+    font-size:   12px;
+    font-weight: 500;
+    color:       var(--rdr-sh-sw-text, #8b949e);
+    white-space: nowrap;
+    line-height: 1;
+}
+
+/* ============================================================
+   BOUTON PILL — clone exact de .rdr-sh-glossaire-btn
+   ============================================================ */
+#rdrg-float-switch .rdrg-float-toggle {
+    display:         inline-flex !important;
+    align-items:     center !important;
+    justify-content: flex-start !important;
+    width:           44px !important;
+    height:          24px !important;
+    border-radius:   12px !important;
+    border:          1.5px solid rgba(255,255,255,0.2) !important;
+    cursor:          pointer !important;
+    padding:         3px !important;
+    position:        relative !important;
+    background:      #374151 !important;
+    transition:      background 0.3s ease, border-color 0.3s ease !important;
+    flex-shrink:     0 !important;
+    outline:         none !important;
+    box-shadow:      none !important;
+    -webkit-appearance: none !important;
+    appearance:      none !important;
+    overflow:        visible !important;
+}
+
+/* État ON */
+#rdrg-float-switch .rdrg-float-toggle.is-on {
+    background:   #2ea8ff !important;
+    border-color: rgba(46,168,255,0.5) !important;
+}
+
+/* Mode clair */
+[data-theme="light"] #rdrg-float-switch .rdrg-float-toggle {
+    background:   #cbd5e1 !important;
+    border-color: rgba(0,0,0,0.15) !important;
+}
+
+[data-theme="light"] #rdrg-float-switch .rdrg-float-toggle.is-on {
+    background:   #1e73be !important;
+    border-color: rgba(30,115,190,0.5) !important;
+}
+
+/* Pastille */
+#rdrg-float-switch .rdrg-float-knob {
+    position:      absolute !important;
+    width:         16px !important;
+    height:        16px !important;
+    border-radius: 50% !important;
+    background:    white !important;
+    top:           50% !important;
+    transform:     translateY(-50%) !important;
+    left:          4px !important;
+    transition:    left 0.3s ease !important;
+    box-shadow:    0 1px 3px rgba(0,0,0,0.4) !important;
+}
+
+#rdrg-float-switch .rdrg-float-toggle.is-on .rdrg-float-knob {
+    left: 22px !important;
+}
+
+/* Focus accessibilité */
+#rdrg-float-switch .rdrg-float-toggle:focus-visible {
+    outline:        2px solid #2ea8ff;
+    outline-offset: 2px;
+}

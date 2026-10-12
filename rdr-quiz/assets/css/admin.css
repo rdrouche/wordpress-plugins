@@ -1,0 +1,708 @@
+/* RDR-IT Quiz — admin.css */
+
+#rdr-questions-manager { margin-top: 10px; }
+
+.rdr-admin-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.rdr-field label { display: block; font-weight: 600; margin-bottom: 5px; color: #1d2327; font-size: 13px; }
+.rdr-field select,
+.rdr-field input[type="number"],
+.rdr-field input[type="url"],
+.rdr-field input[type="text"] {
+    width: 100%;
+    padding: 6px 10px;
+    border: 1px solid #8c8f94;
+    border-radius: 4px;
+    font-size: 13px;
+}
+
+.rdr-field-full { margin-top: 10px; }
+
+/* Questions manager */
+.rdr-questions-search {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 15px;
+}
+.rdr-questions-search input {
+    flex: 1;
+    padding: 6px 10px;
+    border: 1px solid #8c8f94;
+    border-radius: 4px;
+}
+
+.rdr-questions-columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.rdr-q-available h4,
+.rdr-q-selected h4 {
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #1d2327;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 6px;
+}
+
+.rdr-q-available ul,
+.rdr-q-selected ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    min-height: 80px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background: #f9f9f9;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.rdr-q-available li,
+.rdr-q-selected li {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 10px;
+    border-bottom: 1px solid #eee;
+    font-size: 13px;
+}
+.rdr-q-available li:last-child,
+.rdr-q-selected li:last-child { border-bottom: none; }
+
+.rdr-handle { cursor: grab; color: #aaa; }
+.rdr-handle:active { cursor: grabbing; }
+
+.rdr-add-q, .rdr-remove-q {
+    margin-left: auto;
+    width: 24px;
+    height: 24px;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+.rdr-add-q { background: #2ea8ff; color: #fff; }
+.rdr-remove-q { background: #ef4444; color: #fff; }
+
+/* Question type selector */
+.rdr-type-selector {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.rdr-type-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 110px;
+    height: 80px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 12px;
+    text-align: center;
+    padding: 8px;
+    background: #fff;
+    transition: border-color .15s, background .15s;
+    color: #1d2327;
+    gap: 6px;
+}
+.rdr-type-btn:hover { border-color: #2ea8ff; background: #e8f4ff; }
+.rdr-type-btn.active { border-color: #2ea8ff; background: #e8f4ff; }
+
+/* Choices */
+.rdr-choices-list { margin-bottom: 10px; }
+.rdr-choice-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 8px;
+}
+.rdr-choice-row input[type="text"] {
+    flex: 1;
+    padding: 5px 8px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-size: 13px;
+}
+.rdr-remove-choice {
+    flex-shrink: 0;
+    background: #ef4444;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 28px;
+    height: 28px;
+}
+
+/* Order */
+.rdr-order-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 8px;
+    margin-bottom: 6px;
+    cursor: grab;
+}
+.rdr-order-item input[type="text"] {
+    flex: 1;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-size: 13px;
+}
+.rdr-remove-order {
+    background: #ef4444;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 14px;
+    width: 26px;
+    height: 26px;
+}
+
+/* Free */
+.rdr-free-field textarea { font-family: 'Courier New', monospace; }
+
+/* Type badges */
+.rdr-q-type {
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-size: 10px;
+    font-weight: 700;
+    flex-shrink: 0;
+    color: #fff;
+}
+.rdr-type-yesno    { background: #22c55e; }
+.rdr-type-radio    { background: #3b82f6; }
+.rdr-type-checkbox { background: #a855f7; }
+.rdr-type-order    { background: #f97316; }
+.rdr-type-free     { background: #1d2327; }
+
+/* Stats box */
+.rdr-stats-box code {
+    background: #f0f0f1;
+    padding: 3px 6px;
+    border-radius: 3px;
+    font-size: 12px;
+    display: block;
+    margin-top: 4px;
+}
+
+/* Sortable placeholder */
+.sortable-placeholder {
+    height: 36px;
+    background: #e8f4ff;
+    border: 2px dashed #2ea8ff;
+    border-radius: 4px;
+    margin-bottom: 6px;
+}
+
+@media (max-width: 900px) {
+    .rdr-admin-grid { grid-template-columns: 1fr 1fr; }
+    .rdr-questions-columns { grid-template-columns: 1fr; }
+}
+
+/* ================================================================
+   GESTIONNAIRE DE QUESTIONS v1.2
+   Toolbar filtres + badges difficulté + tags pills
+================================================================ */
+
+/* Toolbar */
+.rdr-questions-toolbar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 12px;
+    padding: 10px 12px;
+    background: #f9f9f9;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+}
+.rdr-questions-toolbar input[type="text"] {
+    flex: 1;
+    min-width: 160px;
+    max-width: 280px;
+    height: 30px;
+    padding: 0 8px;
+    border: 1px solid #c9c9c9;
+    border-radius: 4px;
+    font-size: 13px;
+}
+.rdr-questions-toolbar select {
+    height: 30px;
+    font-size: 13px;
+    border: 1px solid #c9c9c9;
+    border-radius: 4px;
+    padding: 0 6px;
+    background: #fff;
+}
+.rdr-questions-toolbar .button {
+    margin-left: auto;
+    white-space: nowrap;
+}
+
+/* Colonnes */
+.rdr-questions-columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 4px;
+}
+@media (max-width: 900px) {
+    .rdr-questions-columns { grid-template-columns: 1fr; }
+}
+
+.rdr-q-col-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 6px;
+}
+.rdr-q-col-header h4 {
+    margin: 0;
+    font-size: 13px;
+    font-weight: 600;
+    color: #3c434a;
+}
+.rdr-count-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 22px;
+    height: 18px;
+    padding: 0 6px;
+    background: #2271b1;
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    border-radius: 999px;
+}
+
+.rdr-q-available ul,
+.rdr-q-selected ul {
+    max-height: 380px;
+    overflow-y: auto;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    background: #fff;
+    padding: 4px;
+    list-style: none;
+    margin: 0;
+}
+
+/* Item de question */
+.rdr-q-available li,
+.rdr-q-selected li {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 8px;
+    border-radius: 5px;
+    border: 1px solid transparent;
+    cursor: default;
+    transition: background .15s;
+    margin-bottom: 2px;
+}
+.rdr-q-available li:hover { background: #f0f6ff; }
+.rdr-q-selected li {
+    background: #f6f7f7;
+    border-color: #e0e0e0;
+    cursor: grab;
+}
+.rdr-q-selected li:hover { background: #edf2fb; }
+
+.rdr-q-item-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    flex: 1;
+    min-width: 0;
+}
+.rdr-q-item-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    align-items: center;
+}
+.rdr-q-title {
+    font-size: 13px;
+    color: #3c434a;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Badges type */
+.rdr-q-type {
+    display: inline-block;
+    padding: 1px 5px;
+    border-radius: 3px;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .3px;
+    flex-shrink: 0;
+}
+.rdr-type-yesno    { background: #d1fae5; color: #065f46; }
+.rdr-type-radio    { background: #dbeafe; color: #1e40af; }
+.rdr-type-checkbox { background: #ede9fe; color: #5b21b6; }
+.rdr-type-order    { background: #fef3c7; color: #92400e; }
+.rdr-type-free     { background: #f1f5f9; color: #334155; }
+
+/* Badges difficulté question */
+.rdr-q-diff {
+    display: inline-block;
+    padding: 1px 6px;
+    border-radius: 3px;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    flex-shrink: 0;
+}
+.rdr-diff-debutant      { background: #d1fae5; color: #065f46; }
+.rdr-diff-intermediaire { background: #fef3c7; color: #92400e; }
+.rdr-diff-avance        { background: #fed7aa; color: #9a3412; }
+.rdr-diff-expert        { background: #fee2e2; color: #991b1b; }
+
+/* Tags pills dans la liste */
+.rdr-q-tag-pill {
+    display: inline-block;
+    padding: 1px 6px;
+    border-radius: 999px;
+    border: 1px solid #c3c4c7;
+    font-size: 10px;
+    color: #50575e;
+    background: #f6f7f7;
+    flex-shrink: 0;
+}
+
+/* Boutons +/× */
+.rdr-add-q, .rdr-remove-q {
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+    padding: 0 !important;
+    line-height: 22px !important;
+    text-align: center;
+    font-size: 14px !important;
+    font-weight: 700;
+}
+.rdr-add-q    { color: #2271b1 !important; }
+.rdr-remove-q { color: #b32d2e !important; }
+
+/* Message aucun résultat */
+.rdr-no-results {
+    padding: 12px;
+    text-align: center;
+    color: #9ca3af;
+    font-style: italic;
+    font-size: 13px;
+}
+
+/* Placeholder sortable */
+.rdr-sortable-placeholder {
+    height: 36px;
+    background: #e8f0fe;
+    border: 2px dashed #2271b1;
+    border-radius: 5px;
+    list-style: none;
+    margin-bottom: 2px;
+}
+
+/* Champ de difficulté de question */
+.rdr-admin-grid-2col {
+    grid-template-columns: 1fr 1fr;
+}
+
+/* ================================================================
+   CSS FRONT — CTA shortcode [rdr_quiz_link]
+================================================================ */
+/* Ces règles sont dans admin.css pour cohérence éditeur Gutenberg,
+   mais les vrais styles front sont dans quiz.css (déjà chargé) */
+.rdr-quiz-block-preview.components-placeholder {
+    min-height: 48px;
+    border-radius: 8px;
+    justify-content: flex-start;
+    padding: 12px 16px;
+}
+.rdr-quiz-block-inner {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: #3c434a;
+}
+.rdr-quiz-block-empty { color: #9ca3af; font-style: italic; }
+
+/* ================================================================
+   PAGE STATISTIQUES ADMIN
+================================================================ */
+
+.rdr-stats-wrap h1 {
+    margin-bottom: 1.5rem;
+}
+
+/* ── KPI cards ── */
+.rdr-stats-kpi-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 2rem;
+}
+@media (max-width: 780px) { .rdr-stats-kpi-row { grid-template-columns: 1fr; } }
+
+.rdr-kpi-card {
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    box-shadow: 0 1px 4px rgba(0,0,0,.06);
+}
+.rdr-kpi-icon  { font-size: 1.6rem; line-height: 1; }
+.rdr-kpi-num   { font-size: 2rem; font-weight: 800; color: #1d2327; line-height: 1.1; }
+.rdr-kpi-label { font-size: .82rem; color: #6b7280; }
+
+/* ── Sections ── */
+.rdr-stats-section {
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 1px 4px rgba(0,0,0,.05);
+}
+.rdr-stats-section h2 {
+    margin: 0 0 1rem;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #1d2327;
+    border-bottom: 1px solid #f0f0f0;
+    padding-bottom: .75rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.rdr-stats-empty {
+    color: #9ca3af;
+    font-style: italic;
+    text-align: center;
+    padding: 1.5rem 0;
+}
+
+/* ── Graphique historique ── */
+.rdr-history-chart-wrap {
+    margin-bottom: 1.25rem;
+    max-height: 220px;
+}
+
+/* ── Tableau stats ── */
+.rdr-stats-table {
+    margin-top: 0 !important;
+    border-radius: 6px;
+    overflow: hidden;
+}
+.rdr-stats-table th {
+    font-size: .82rem !important;
+    font-weight: 600 !important;
+    white-space: nowrap;
+}
+.rdr-stats-table td {
+    vertical-align: middle !important;
+    padding: 8px 12px !important;
+}
+
+/* ── Barre de progression ── */
+.rdr-pct-bar-wrap {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.rdr-pct-bar-wrap > span {
+    font-size: .82rem;
+    font-weight: 600;
+    white-space: nowrap;
+    min-width: 42px;
+    color: #3c434a;
+}
+.rdr-pct-bar {
+    height: 8px;
+    border-radius: 999px;
+    background: #2271b1;   /* défaut bleu */
+    min-width: 4px;
+    max-width: 160px;
+    transition: width .3s ease;
+}
+.rdr-bar-green  { background: #16a34a; }
+.rdr-bar-orange { background: #d97706; }
+.rdr-bar-red    { background: #dc2626; }
+
+/* ── Bouton RAZ inline ── */
+.rdr-btn-reset {
+    color: #b32d2e !important;
+    border-color: #b32d2e !important;
+    white-space: nowrap;
+}
+.rdr-btn-reset:hover {
+    background: #b32d2e !important;
+    color: #fff !important;
+}
+
+/* ── Reset global ── */
+.rdr-stats-global-reset {
+    margin-top: 1.25rem;
+    padding-top: 1rem;
+    border-top: 1px solid #f0f0f0;
+    text-align: right;
+}
+
+/* ── Badge type question dans stats ── */
+.rdr-stats-table .rdr-q-type {
+    font-size: 10px;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+/* ================================================================
+   TOOLBAR v1.4 — Multi-tag pills + ID search
+================================================================ */
+.rdr-questions-toolbar {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 12px;
+    padding: 10px 12px;
+    background: #f9f9f9;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+}
+.rdr-toolbar-row {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+.rdr-toolbar-row input[type="text"] {
+    flex: 1; min-width: 140px; max-width: 240px;
+    height: 30px; padding: 0 8px;
+    border: 1px solid #c9c9c9; border-radius: 4px; font-size: 13px;
+}
+.rdr-toolbar-row input[type="number"] {
+    width: 72px; height: 30px; padding: 0 6px;
+    border: 1px solid #c9c9c9; border-radius: 4px; font-size: 13px;
+}
+.rdr-toolbar-row select {
+    height: 30px; font-size: 13px;
+    border: 1px solid #c9c9c9; border-radius: 4px; padding: 0 6px; background: #fff;
+}
+
+/* Tags pills multi-select */
+.rdr-toolbar-tags {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 5px;
+    padding-top: 4px;
+    border-top: 1px solid #e8e8e8;
+}
+.rdr-tag-filter-label {
+    font-size: 11px; font-weight: 600;
+    color: #6b7280; text-transform: uppercase;
+    letter-spacing: .5px; flex-shrink: 0;
+}
+.rdr-tag-filter-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 3px 8px;
+    background: #fff;
+    border: 1px solid #c9c9c9;
+    border-radius: 999px;
+    font-size: 12px;
+    color: #3c434a;
+    cursor: pointer;
+    transition: border-color .15s, background .15s, color .15s;
+    user-select: none;
+}
+.rdr-tag-filter-pill:hover {
+    border-color: #2271b1;
+    color: #2271b1;
+}
+.rdr-tag-filter-pill.active {
+    background: #2271b1;
+    border-color: #2271b1;
+    color: #fff;
+}
+.rdr-tag-filter-pill input { display: none; }
+.rdr-tag-count {
+    font-size: 10px;
+    opacity: .7;
+}
+
+/* Badge ID dans la liste */
+.rdr-q-id {
+    font-size: 10px;
+    color: #9ca3af;
+    font-family: monospace;
+    flex-shrink: 0;
+}
+
+/* Spinner loading */
+.rdr-loading-row {
+    display: flex; align-items: center; gap: 8px;
+    padding: 12px; color: #6b7280; font-size: 13px; list-style: none;
+}
+.rdr-loading-row .spinner { margin: 0; float: none; }
+
+/* Zone de texte enrichie question */
+.rdr-fill-blank-row {
+    margin-bottom: 8px;
+}
+.rdr-fill-blank-row label {
+    display: block; font-weight: 600; font-size: 12px; margin-bottom: 3px; color: #3c434a;
+}
+
+/* ── Fill admin ── */
+.rdr-fill-field p { margin: 0 0 8px; }
+.rdr-fill-field > input[type="text"] {
+    font-size: 14px; padding: 6px 10px;
+    border: 1px solid #c9c9c9; border-radius: 4px;
+}
+.rdr-fill-blank-row textarea {
+    font-family: monospace; font-size: 12px;
+    border: 1px solid #c9c9c9; border-radius: 4px; padding: 6px;
+}

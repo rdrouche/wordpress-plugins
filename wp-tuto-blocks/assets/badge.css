@@ -1,0 +1,15 @@
+[class^="rdrit-badge-pill--"] { display:inline-block;padding:.25em .6em;font-size:.78em;font-weight:700;line-height:1;text-align:center;white-space:nowrap;vertical-align:middle;border-radius:10rem; }
+.rdrit-badge-pill--primary   { background-color:#007bff;color:#fff; }
+.rdrit-badge-pill--secondary { background-color:#6c757d;color:#fff; }
+.rdrit-badge-pill--success   { background-color:#28a745;color:#fff; }
+.rdrit-badge-pill--danger    { background-color:#dc3545;color:#fff; }
+.rdrit-badge-pill--warning   { background-color:#ffc107;color:#212529; }
+.rdrit-badge-pill--info      { background-color:#17a2b8;color:#fff; }
+.rdrit-badge-pill--dark      { background-color:#343a40;color:#fff; }
+[data-theme="dark"] .rdrit-badge-pill--primary   { background-color:#1a4a8a;color:#90caf9; }
+[data-theme="dark"] .rdrit-badge-pill--secondary { background-color:#3a3f44;color:#ced4da; }
+[data-theme="dark"] .rdrit-badge-pill--success   { background-color:#1e5c33;color:#a8f0be; }
+[data-theme="dark"] .rdrit-badge-pill--danger    { background-color:#6b1c26;color:#ffcdd2; }
+[data-theme="dark"] .rdrit-badge-pill--warning   { background-color:#7a5200;color:#ffe082; }
+[data-theme="dark"] .rdrit-badge-pill--info      { background-color:#0d4a56;color:#80deea; }
+[data-theme="dark"] .rdrit-badge-pill--dark      { background-color:#1a1d20;color:#adb5bd; }

@@ -1,0 +1,10 @@
+{
+  "slug":        "rdr-doom",
+  "name":        "RDR Doom",
+  "description": "Lance DOOM (WAD) dans une modale front. Shortcode [rdr_doom]. Assets chargés uniquement si le shortcode est présent.",
+  "version":     "1.0.0",
+  "author":      "Romain Drouche",
+  "icon":        "🎮",
+  "entry":       "rdr-doom.php",
+  "min_version": "1.2.0"
+}

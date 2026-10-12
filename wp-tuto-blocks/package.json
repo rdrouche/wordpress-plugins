@@ -1,0 +1,21 @@
+{
+	"name": "wp-tuto-blocks",
+	"version": "1.0.0",
+	"description": "Blocs Gutenberg pour tutoriels et formations",
+	"scripts": {
+		"build": "wp-scripts build blocks/spoiler/index.js blocks/badge-text/index.js --output-path=.",
+		"start": "wp-scripts start blocks/spoiler/index.js blocks/badge-text/index.js --output-path=.",
+		"lint:js": "wp-scripts lint-js",
+		"lint:css": "wp-scripts lint-style"
+	},
+	"devDependencies": {
+		"@wordpress/scripts": "^30.0.0"
+	},
+	"dependencies": {
+		"@wordpress/block-editor": "*",
+		"@wordpress/blocks": "*",
+		"@wordpress/components": "*",
+		"@wordpress/element": "*",
+		"@wordpress/i18n": "*"
+	}
+}

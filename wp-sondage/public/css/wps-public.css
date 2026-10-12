@@ -1,0 +1,740 @@
+/* ═══════════════════════════════════════════════════════════
+   WP Sondage — Frontend CSS v2.0
+   Réutilise les variables CSS du thème (--rdr-*) quand disponibles.
+   Fallback vers les valeurs WPS si le thème ne les fournit pas.
+   ═══════════════════════════════════════════════════════════ */
+
+/* ── Variables WPS — ponts vers le thème ── */
+:root {
+    /* Couleurs → bridge vers RDR-IT / GeneratePress */
+    --wps-bg:       var(--rdr-bg-surface,    #ffffff);
+    --wps-bg-card:  var(--rdr-bg-card,       #f8f9fa);
+    --wps-border:   var(--rdr-border,        rgba(0,0,0,.08));
+    --wps-text:     var(--rdr-text-primary,  #212529);
+    --wps-muted:    var(--rdr-text-secondary,#6c757d);
+    --wps-hint:     var(--rdr-text-muted,    #adb5bd);
+    --wps-accent:   var(--rdr-accent,        #0d6efd);
+    --wps-accent2:  var(--rdr-accent-2,      #0b5ed7);
+    --wps-shadow:   var(--rdr-shadow-card,   0 2px 8px rgba(0,0,0,.08));
+    --wps-radius:   8px;
+    --wps-ok:       #198754;
+    --wps-err:      #dc3545;
+    --wps-bar-bg:   rgba(0,0,0,.08);
+    --wps-trans:    .22s ease;
+    /* Tokens de densité widget (écrasés par .wps-poll-widget / .wps-poll-single) */
+    --wps-p:        1rem 1.1rem;
+    --wps-q-size:   1rem;
+    --wps-q-mb:     .8rem;
+    --wps-c-gap:    .3rem;
+    --wps-c-mb:     .65rem;
+    --wps-c-pad:    .45rem .75rem;
+    --wps-c-size:   .875rem;
+    --wps-inp:      .9rem;
+    --wps-btn-p:    .5rem 1.2rem;
+    --wps-btn-sz:   .85rem;
+}
+
+/* ── Mode sombre : le JS met .wps-is-dark sur .wps-poll ET .wps-archive-wrap ── */
+/* Le thème RDR-IT met déjà --rdr-* en dark via [data-theme="dark"].
+   Ces overrides ne s'appliquent qu'en fallback si les vars thème ne changent pas. */
+.wps-is-dark {
+    --wps-bg:      #1e1e2e;
+    --wps-bg-card: #28283c;
+    --wps-border:  rgba(255,255,255,.1);
+    --wps-text:    #e0e0f0;
+    --wps-muted:   #9090b0;
+    --wps-hint:    #606080;
+    --wps-bar-bg:  rgba(255,255,255,.1);
+    --wps-ok:      #4ade80;
+    --wps-err:     #f87171;
+    --wps-shadow:  0 2px 12px rgba(0,0,0,.4);
+}
+
+/* Fallback OS si le thème ne gère pas lui-même le dark */
+@media (prefers-color-scheme: dark) {
+    .wps-poll.wps-theme-auto:not(.wps-theme-resolved),
+    .wps-archive-wrap:not(.wps-theme-resolved) {
+        --wps-bg:      #1e1e2e;
+        --wps-bg-card: #28283c;
+        --wps-border:  rgba(255,255,255,.1);
+        --wps-text:    #e0e0f0;
+        --wps-muted:   #9090b0;
+        --wps-bar-bg:  rgba(255,255,255,.1);
+        --wps-ok:      #4ade80;
+        --wps-err:     #f87171;
+    }
+}
+
+/* ══════════════════════════════════════════════════════
+   WIDGET / SHORTCODE — compact
+══════════════════════════════════════════════════════ */
+.wps-poll-widget {
+    --wps-p:     .8rem .95rem;
+    --wps-q-size:.88rem;
+    --wps-q-mb:  .6rem;
+    --wps-c-gap: .22rem;
+    --wps-c-mb:  .5rem;
+    --wps-c-pad: .3rem .6rem;
+    --wps-c-size:.8rem;
+    --wps-inp:   .82rem;
+    --wps-btn-p: .35rem .95rem;
+    --wps-btn-sz:.78rem;
+}
+
+/* PAGE DÉTAIL — aéré */
+.wps-poll-single {
+    --wps-p:     1.5rem 1.75rem;
+    --wps-q-size:1.1rem;
+    --wps-q-mb:  1rem;
+    --wps-c-gap: .4rem;
+    --wps-c-mb:  .85rem;
+    --wps-c-pad: .55rem .85rem;
+    --wps-c-size:.92rem;
+    --wps-inp:   .95rem;
+    --wps-btn-p: .6rem 1.6rem;
+    --wps-btn-sz:.92rem;
+    max-width:   600px;
+}
+
+/* ══════════════════════════════════════════════════════
+   CONTENEUR SONDAGE
+══════════════════════════════════════════════════════ */
+.wps-poll {
+    background:    var(--wps-bg-card);
+    border:        1px solid var(--wps-border);
+    border-radius: var(--wps-radius);
+    box-shadow:    var(--wps-shadow);
+    color:         var(--wps-text);
+    font-family:   inherit;
+    font-size:     var(--wps-c-size);
+    padding:       var(--wps-p);
+    margin:        .75rem auto;
+    max-width:     100%;
+}
+.wps-poll-widget { margin: 0; box-shadow: none; }
+
+.wps-question {
+    font-size:     var(--wps-q-size);
+    font-weight:   700;
+    line-height:   1.35;
+    margin-bottom: var(--wps-q-mb);
+    color:         var(--wps-text);
+}
+
+/* ══════════════════════════════════════════════════════
+   CHOIX
+══════════════════════════════════════════════════════ */
+.wps-choices {
+    display:        flex;
+    flex-direction: column;
+    gap:            var(--wps-c-gap);
+    margin-bottom:  var(--wps-c-mb);
+}
+.wps-choice-item { display: flex; flex-direction: column; }
+
+.wps-choice-label {
+    display:       flex;
+    align-items:   center;
+    gap:           .5rem;
+    cursor:        pointer;
+    padding:       var(--wps-c-pad);
+    border:        1px solid var(--wps-border);
+    border-radius: calc(var(--wps-radius) - 2px);
+    font-size:     var(--wps-c-size);
+    line-height:   1.3;
+    transition:    background var(--wps-trans), border-color var(--wps-trans);
+}
+.wps-choice-label:hover {
+    background:   var(--wps-bg);
+    border-color: var(--wps-accent);
+}
+.wps-choice-input {
+    accent-color: var(--wps-accent);
+    width:  var(--wps-inp); height: var(--wps-inp);
+    flex-shrink: 0;
+}
+
+/* Sous-choix */
+.wps-sub-choices {
+    display: none; /* slideDown géré par JS */
+    flex-direction: column;
+    gap:         .2rem;
+    margin:      .25rem 0 0 1rem;
+    border-left: 2px solid var(--wps-accent);
+    padding-left:.55rem;
+}
+.wps-choice-child .wps-choice-label {
+    font-size: calc(var(--wps-c-size) * .92);
+    padding:   calc(var(--wps-c-pad) * .8);
+}
+
+/* ══════════════════════════════════════════════════════
+   FORMULAIRE — BOUTONS & SPINNER
+══════════════════════════════════════════════════════ */
+.wps-form { display: flex; flex-wrap: wrap; gap: .35rem; }
+.wps-form .wps-choices,
+.wps-form .wps-msg { width: 100%; margin: 0; }
+
+.wps-form-actions { display: flex; align-items: center; gap: .5rem; width: 100%; margin-top: .1rem; }
+
+/* ── Bouton vote ── */
+.wps-btn-vote {
+    background:    var(--wps-accent) !important;
+    color:         #fff !important;
+    border:        none !important;
+    border-radius: calc(var(--wps-radius) - 2px) !important;
+    padding:       var(--wps-btn-p) !important;
+    font-size:     var(--wps-btn-sz) !important;
+    font-weight:   600 !important;
+    cursor:        pointer !important;
+    transition:    background var(--wps-trans), transform .1s !important;
+    display:       inline-flex !important;
+    align-items:   center !important;
+    gap:           .35rem !important;
+    white-space:   nowrap !important;
+    box-shadow:    none !important;
+    transform:     none !important;
+    text-decoration: none !important;
+}
+.wps-btn-vote:hover   { background: var(--wps-accent2) !important; transform: none !important; box-shadow: none !important; }
+.wps-btn-vote:active  { transform: scale(.97) !important; }
+.wps-btn-vote:disabled { opacity: .55 !important; cursor: not-allowed !important; }
+
+/* ── Spinner ── */
+.wps-spinner {
+    width: 15px; height: 15px;
+    border: 2px solid var(--wps-bar-bg);
+    border-top-color: var(--wps-accent);
+    border-radius: 50%;
+    animation: wps-spin .7s linear infinite;
+    flex-shrink: 0;
+    display: none;
+}
+.wps-spinner--active { display: inline-block; }
+@keyframes wps-spin { to { transform: rotate(360deg); } }
+
+/* ── Bouton "Voir les résultats" (peek) ── */
+.wps-btn-peek {
+    background:      transparent !important;
+    border:          none !important;
+    padding:         0 !important;
+    color:           var(--wps-muted) !important;
+    font-size:       var(--wps-btn-sz) !important;
+    font-weight:     500 !important;
+    cursor:          pointer !important;
+    text-decoration: underline !important;
+    text-underline-offset: 2px !important;
+    white-space:     nowrap !important;
+    transition:      color var(--wps-trans) !important;
+    box-shadow:      none !important;
+    transform:       none !important;
+    border-radius:   0 !important;
+}
+.wps-btn-peek:hover { color: var(--wps-accent) !important; transform: none !important; }
+.wps-btn-peek:disabled { opacity: .5 !important; cursor: default !important; text-decoration: none !important; }
+
+/* ── Bouton retour au vote ── */
+.wps-btn-back-vote {
+    display:         inline-flex !important;
+    align-items:     center !important;
+    gap:             .3rem !important;
+    background:      transparent !important;
+    color:           var(--wps-accent) !important;
+    border:          1px solid var(--wps-border) !important;
+    border-radius:   calc(var(--wps-radius) - 2px) !important;
+    padding:         .32rem .8rem !important;
+    font-size:       calc(var(--wps-btn-sz) * .95) !important;
+    cursor:          pointer !important;
+    margin-top:      .55rem !important;
+    box-shadow:      none !important;
+    transform:       none !important;
+    transition:      background var(--wps-trans), border-color var(--wps-trans) !important;
+}
+.wps-btn-back-vote:hover { background: rgba(0,0,0,.04) !important; border-color: var(--wps-accent) !important; transform: none !important; box-shadow: none !important; }
+
+/* ── Bouton reset (admin) ── */
+.wps-btn-reset {
+    background:      transparent !important;
+    color:           var(--wps-err) !important;
+    border:          1px solid var(--wps-err) !important;
+    border-radius:   calc(var(--wps-radius) - 2px) !important;
+    padding:         .35rem .9rem !important;
+    font-size:       .78rem !important;
+    font-weight:     500 !important;
+    cursor:          pointer !important;
+    box-shadow:      none !important;
+    transform:       none !important;
+    transition:      background var(--wps-trans) !important;
+}
+.wps-btn-reset:hover { background: var(--wps-err) !important; color: #fff !important; transform: none !important; box-shadow: none !important; }
+.wps-btn-reset:disabled { opacity: .5 !important; cursor: not-allowed !important; }
+
+/* ══════════════════════════════════════════════════════
+   MESSAGES & NOTICES
+══════════════════════════════════════════════════════ */
+.wps-msg { font-size: .78rem; min-height: 1em; font-weight: 500; }
+.wps-msg-success { color: var(--wps-ok);  }
+.wps-msg-error   { color: var(--wps-err); }
+
+.wps-notice {
+    font-size:     .8rem;
+    color:         var(--wps-muted);
+    padding:       .4rem .7rem;
+    border:        1px solid var(--wps-border);
+    border-radius: calc(var(--wps-radius) - 2px);
+    margin-top:    .4rem;
+    line-height:   1.35;
+}
+.wps-closed { border-color: var(--wps-err); color: var(--wps-err); }
+.wps-voted  { border-color: var(--wps-ok);  color: var(--wps-ok);  }
+
+.wps-peek-notice {
+    font-size:    .75rem;
+    color:        var(--wps-muted);
+    padding:      .35rem .65rem;
+    background:   rgba(0,0,0,.04);
+    border-left:  3px solid var(--wps-accent);
+    border-radius:0 4px 4px 0;
+    margin-bottom:.6rem;
+    line-height:  1.4;
+}
+.wps-is-dark .wps-peek-notice { background: rgba(255,255,255,.05); }
+
+.wps-admin-actions {
+    margin-top: .7rem;
+    padding-top: .6rem;
+    border-top: 1px dashed var(--wps-border);
+}
+
+/* ══════════════════════════════════════════════════════
+   RÉSULTATS
+══════════════════════════════════════════════════════ */
+.wps-results        { margin-top: .9rem; }
+.wps-poll-widget .wps-results { margin-top: .55rem; }
+
+.wps-total {
+    font-size:   .7rem;
+    color:       var(--wps-hint);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .05em;
+    margin-bottom: .45rem;
+}
+
+.wps-result-row {
+    display:       grid;
+    grid-template-columns: 1fr 1fr auto auto;
+    align-items:   center;
+    gap:           .25rem .4rem;
+    margin-bottom: .35rem;
+}
+.wps-result-label {
+    font-size:   .8rem; font-weight: 500; line-height: 1.25;
+    grid-column: 1 / -1;
+}
+.wps-poll-widget .wps-result-label { font-size: .76rem; }
+
+.wps-result-bar-wrap {
+    grid-column: 1 / 3;
+    height:      6px;
+    background:  var(--wps-bar-bg);
+    border-radius: 99px;
+    overflow:    hidden;
+}
+.wps-poll-single .wps-result-bar-wrap { height: 8px; }
+
+.wps-result-bar {
+    height: 100%; width: 0%;
+    background:    var(--wps-accent);
+    border-radius: 99px;
+    transition:    width .55s cubic-bezier(.4,0,.2,1);
+}
+.wps-result-pct  { font-size: .76rem; font-weight: 700; color: var(--wps-accent); white-space: nowrap; }
+.wps-result-count { font-size: .7rem; color: var(--wps-hint); white-space: nowrap; }
+.wps-poll-widget .wps-result-count { display: none; }
+
+.wps-sub-results {
+    grid-column:  1 / -1;
+    margin:       .2rem 0 0 .9rem;
+    border-left:  2px solid var(--wps-border);
+    padding-left: .55rem;
+}
+.wps-result-sub .wps-result-label { font-size: .75rem; }
+.wps-result-sub .wps-result-bar   { opacity: .65; }
+
+/* ══════════════════════════════════════════════════════
+   LIEN "VOIR LE DÉTAIL"
+══════════════════════════════════════════════════════ */
+.wps-more-link {
+    display:     inline-block;
+    margin-top:  .5rem;
+    font-size:   .78rem;
+    color:       var(--wps-accent);
+    text-decoration: none;
+    font-weight: 500;
+    opacity:     .8;
+}
+.wps-more-link:hover { opacity: 1; text-decoration: underline; }
+
+/* ══════════════════════════════════════════════════════
+   SKELETON LOADER (lazy widget)
+══════════════════════════════════════════════════════ */
+.wps-lazy-widget {
+    background:    var(--wps-bg-card);
+    border:        1px solid var(--wps-border);
+    border-radius: var(--wps-radius);
+    padding:       .8rem .95rem;
+    min-height:    120px;
+    position:      relative;
+    overflow:      hidden;
+}
+.wps-lazy-widget::after {
+    content:    '';
+    position:   absolute;
+    inset:      0;
+    background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,.18) 50%, transparent 100%);
+    animation:  wps-shimmer 1.4s infinite;
+}
+.wps-is-dark .wps-lazy-widget::after,
+[data-theme="dark"] .wps-lazy-widget::after {
+    background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,.06) 50%, transparent 100%);
+}
+@keyframes wps-shimmer { from { transform: translateX(-100%); } to { transform: translateX(100%); } }
+
+.wps-skeleton-inner {
+    display:       flex;
+    flex-direction:column;
+    gap:           .55rem;
+    pointer-events:none;
+}
+.wps-skeleton-line {
+    height:        11px;
+    background:    var(--wps-bar-bg);
+    border-radius: 99px;
+}
+.wps-skeleton-line--title  { width: 75%; height: 14px; margin-bottom: .2rem; }
+.wps-skeleton-line--full   { width: 100%; }
+.wps-skeleton-line--med    { width: 88%; }
+.wps-skeleton-line--short  { width: 70%; }
+.wps-skeleton-btn          { width: 72px; height: 26px; background: var(--wps-bar-bg); border-radius: 5px; margin-top: .3rem; }
+
+/* ══════════════════════════════════════════════════════
+   ARCHIVE — liste des sondages
+   Dark mode géré via .wps-is-dark sur .wps-archive-wrap
+   (mis par le JS, comme pour .wps-poll)
+══════════════════════════════════════════════════════ */
+.wps-archive-wrap {
+    max-width: 1000px;
+    margin:    0 auto;
+    padding:   2rem 1rem;
+    /* hérite la couleur de texte du thème */
+    color:     var(--rdr-text-primary, inherit);
+}
+
+/* Hero stats */
+.wps-archive-hero {
+    display:    flex;
+    flex-wrap:  wrap;
+    gap:        1rem;
+    margin-bottom: 1.75rem;
+    padding:    1.1rem 1.4rem;
+    background: var(--rdr-bg-accent, rgba(13,110,253,.06));
+    border:     1px solid var(--rdr-border, rgba(0,0,0,.08));
+    border-radius: var(--wps-radius);
+    align-items:center;
+}
+.wps-archive-hero-stat { text-align: center; flex: 1; min-width: 70px; }
+.wps-archive-hero-stat strong {
+    display:     block;
+    font-size:   1.8rem;
+    font-weight: 800;
+    color:       var(--rdr-accent, #0d6efd);
+    line-height: 1;
+}
+.wps-archive-hero-stat span {
+    font-size:   .72rem;
+    color:       var(--rdr-text-secondary, #6c757d);
+    text-transform: uppercase;
+    letter-spacing: .05em;
+}
+
+/* Toolbar */
+.wps-archive-toolbar { display: flex; flex-wrap: wrap; align-items: center; gap: .65rem; margin-bottom: 1.1rem; }
+
+.wps-archive-search {
+    flex: 1; min-width: 180px;
+    padding:      .42rem .8rem;
+    border:       1px solid var(--rdr-border, rgba(0,0,0,.12));
+    border-radius:99px;
+    font-size:    .875rem;
+    background:   var(--rdr-bg-surface, #fff);
+    color:        var(--rdr-text-primary, #212529);
+    outline:      none;
+    transition:   border-color var(--wps-trans);
+}
+.wps-archive-search:focus { border-color: var(--rdr-accent, #0d6efd); }
+
+.wps-archive-sort {
+    padding:      .42rem .8rem;
+    border:       1px solid var(--rdr-border, rgba(0,0,0,.12));
+    border-radius:99px;
+    font-size:    .85rem;
+    background:   var(--rdr-bg-surface, #fff);
+    color:        var(--rdr-text-primary, #212529);
+    cursor:       pointer;
+}
+
+/* Catégories */
+.wps-cat-nav { display: flex; flex-wrap: wrap; gap: .35rem; margin-bottom: 1.1rem; }
+
+/*
+ * Reset complet des styles button du thème (qui cible `button` avec !important).
+ * Le thème RDR-IT applique background:var(--rdr-accent) et color:#fff sur TOUS les <button>.
+ * On doit surcharger avec !important pour récupérer le contrôle visuel.
+ */
+.wps-cat-link {
+    display:         inline-flex !important;
+    align-items:     center !important;
+    gap:             .3rem !important;
+    padding:         .3rem .8rem !important;
+    border:          1px solid var(--rdr-border, rgba(0,0,0,.12)) !important;
+    border-radius:   99px !important;
+    font-size:       .82rem !important;
+    font-weight:     400 !important;
+    font-family:     inherit !important;
+    text-decoration: none !important;
+    cursor:          pointer !important;
+    white-space:     nowrap !important;
+    line-height:     1.4 !important;
+    /* Couleurs : hérite du thème en clair ET dark via --rdr-* */
+    background:      var(--rdr-bg-surface, #ffffff) !important;
+    color:           var(--rdr-text-secondary, #6c757d) !important;
+    box-shadow:      none !important;
+    transform:       none !important;
+    transition:      background var(--wps-trans), border-color var(--wps-trans), color var(--wps-trans) !important;
+}
+.wps-cat-link:hover,
+.wps-cat-link--active {
+    background:   rgba(13,110,253,.1) !important;
+    border-color: var(--rdr-accent, #0d6efd) !important;
+    color:        var(--rdr-accent, #0d6efd) !important;
+    font-weight:  600 !important;
+    transform:    none !important;
+    box-shadow:   none !important;
+}
+.wps-cat-count {
+    background:   rgba(13,110,253,.15);
+    color:        var(--rdr-accent, #0d6efd);
+    border-radius:99px;
+    padding:      .04rem .4rem;
+    font-size:    .7rem;
+    font-weight:  700;
+}
+
+/* Grille des cartes */
+.wps-polls-grid {
+    display:               grid;
+    grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+    gap:                   1rem;
+}
+
+/* ── Carte sondage — utilise les variables thème pour le dark mode ── */
+.wps-poll-card {
+    background:    var(--rdr-bg-card, var(--rdr-bg-surface, #fff));
+    border:        1px solid var(--rdr-border, rgba(0,0,0,.08));
+    border-radius: var(--wps-radius);
+    transition:    box-shadow .2s, transform .15s, border-color .2s;
+    position:      relative;
+    overflow:      hidden;
+}
+/* Accroche colorée en haut */
+.wps-poll-card::before {
+    content:    '';
+    display:    block;
+    height:     3px;
+    background: linear-gradient(90deg, var(--rdr-accent, #0d6efd), var(--rdr-accent-2, #6c9fff));
+    opacity:    0;
+    transition: opacity .2s;
+}
+.wps-poll-card:hover { box-shadow: 0 6px 20px rgba(0,0,0,.1); transform: translateY(-2px); }
+.wps-poll-card:hover::before { opacity: 1; }
+.wps-poll-card.wps-card-closed { opacity: .7; }
+.wps-poll-card.wps-card-closed::before { background: var(--rdr-text-muted, #adb5bd); opacity: 1; }
+.wps-poll-card.wps-hidden { display: none; }
+
+.wps-card-link {
+    display:         block;
+    padding:         1rem 1.1rem .85rem;
+    text-decoration: none;
+    color:           var(--rdr-text-primary, inherit);
+}
+.wps-card-question {
+    font-weight:   600;
+    font-size:     .95rem;
+    line-height:   1.4;
+    margin-bottom: .65rem;
+    color:         var(--rdr-text-primary, inherit);
+}
+.wps-card-progress {
+    height:        4px;
+    background:    var(--rdr-border, rgba(0,0,0,.08));
+    border-radius: 99px;
+    overflow:      hidden;
+    margin-bottom: .6rem;
+}
+.wps-card-progress-fill {
+    height:     100%;
+    background: linear-gradient(90deg, var(--rdr-accent, #0d6efd), var(--rdr-accent-2, #6c9fff));
+    border-radius: 99px;
+    transition: width .4s ease;
+}
+.wps-card-meta {
+    display:     flex;
+    flex-wrap:   wrap;
+    gap:         .4rem;
+    align-items: center;
+    font-size:   .76rem;
+    color:       var(--rdr-text-secondary, #6c757d);
+}
+.wps-card-votes { font-weight: 600; }
+
+.wps-card-cats { display: flex; flex-wrap: wrap; gap: .28rem; padding: 0 1.1rem .85rem; }
+.wps-card-cat-badge {
+    padding:      .14rem .5rem;
+    border-radius:99px;
+    font-size:    .7rem; font-weight: 500;
+    background:   rgba(13,110,253,.1);
+    color:        var(--rdr-accent, #0d6efd);
+    text-decoration: none;
+}
+.wps-card-cat-badge:hover { background: rgba(13,110,253,.18); }
+
+/* Badges statut */
+.wps-badge-closed, .wps-badge-voted {
+    padding:       .12rem .5rem;
+    border-radius: 99px;
+    font-size:     .72rem;
+    font-weight:   600;
+}
+.wps-badge-closed { background: rgba(220,53,69,.12);  color: #dc3545; }
+.wps-badge-voted  { background: rgba(25,135,84,.12);  color: #198754; }
+
+/* État vide */
+.wps-empty-state {
+    grid-column: 1 / -1;
+    text-align:  center;
+    padding:     3rem 1rem;
+    color:       var(--rdr-text-secondary, #6c757d);
+}
+.wps-empty-state svg { display: block; margin: 0 auto 1rem; opacity: .3; }
+
+/* Pagination */
+.wps-pagination { margin-top: 2rem; text-align: center; }
+.wps-pagination .page-numbers {
+    display:       inline-block;
+    padding:       .38rem .8rem;
+    margin:        .18rem;
+    border:        1px solid var(--rdr-border, rgba(0,0,0,.1));
+    border-radius: 6px;
+    text-decoration: none;
+    color:         var(--rdr-text-secondary, #6c757d);
+    font-size:     .88rem;
+    transition:    background .2s, border-color .2s;
+}
+.wps-pagination .page-numbers:hover,
+.wps-pagination .page-numbers.current {
+    background:   rgba(13,110,253,.1);
+    border-color: var(--rdr-accent, #0d6efd);
+    color:        var(--rdr-accent, #0d6efd);
+    font-weight:  600;
+}
+
+/* ── Responsive ── */
+@media (max-width: 600px) {
+    .wps-poll-single { padding: 1rem 1.1rem; }
+    .wps-archive-hero { padding: .85rem 1rem; }
+    .wps-result-row { grid-template-columns: 1fr auto; }
+    .wps-result-bar-wrap { grid-column: 1 / -1; }
+    .wps-polls-grid { grid-template-columns: 1fr; }
+}
+
+/* ══════════════════════════════════════════════════════
+   SKELETON CARDS — archive page lazy load
+══════════════════════════════════════════════════════ */
+.wps-archive-skeleton .wps-poll-card,
+.wps-card-skeleton {
+    pointer-events: none;
+    position: relative;
+    overflow: hidden;
+}
+/* Shimmer sur les cartes skeleton */
+.wps-archive-skeleton .wps-poll-card::after,
+.wps-card-skeleton::after {
+    content:    '';
+    position:   absolute;
+    inset:      0;
+    background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,.22) 50%, transparent 100%);
+    animation:  wps-shimmer 1.3s infinite;
+}
+.wps-is-dark .wps-archive-skeleton .wps-poll-card::after,
+.wps-is-dark .wps-card-skeleton::after {
+    background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,.07) 50%, transparent 100%);
+}
+@keyframes wps-shimmer { from { transform: translateX(-100%); } to { transform: translateX(100%); } }
+
+/* Lignes de skeleton */
+.wps-sk-line {
+    background:    var(--wps-bar-bg);
+    border-radius: 99px;
+    height:        11px;
+    margin-bottom: .5rem;
+}
+.wps-sk-title { width: 72%; height: 14px; margin-bottom: .75rem; }
+.wps-sk-bar   { width: 100%; height:  6px; margin-bottom: .55rem; }
+.wps-sk-meta  { width: 55%; height:  9px; }
+
+/* ══════════════════════════════════════════════════════
+   LIEN RETOUR ARCHIVE (page détail sondage)
+══════════════════════════════════════════════════════ */
+.wps-back-link-wrap {
+    margin-bottom: .9rem;
+}
+
+.wps-back-link {
+    display:         inline-flex;
+    align-items:     center;
+    gap:             .35rem;
+    font-size:       .82rem;
+    font-weight:     500;
+    color:           var(--rdr-text-secondary, var(--wps-muted));
+    text-decoration: none;
+    padding:         .3rem .65rem .3rem .45rem;
+    border:          1px solid var(--rdr-border, var(--wps-border));
+    border-radius:   99px;
+    transition:      color var(--wps-trans), border-color var(--wps-trans), background var(--wps-trans);
+    line-height:     1;
+}
+
+.wps-back-link svg {
+    flex-shrink: 0;
+    transition:  transform var(--wps-trans);
+}
+
+.wps-back-link:hover {
+    color:        var(--rdr-accent, var(--wps-accent));
+    border-color: var(--rdr-accent, var(--wps-accent));
+    background:   var(--rdr-bg-accent, rgba(46,168,255,.06));
+    text-decoration: none;
+}
+
+.wps-back-link:hover svg {
+    transform: translateX(-2px);
+}
+
+/* Note multiréponse sur les résultats checkbox */
+.wps-total-note {
+    font-size:   .7rem;
+    font-weight: 400;
+    color:       var(--wps-hint);
+    font-style:  italic;
+}

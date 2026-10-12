@@ -1,0 +1,10 @@
+{
+    "slug":        "admin-menu-organizer",
+    "name":        "Admin Menu Organizer",
+    "description": "Réorganisez le menu d'administration WordPress par groupes personnalisés via drag & drop.",
+    "version":     "1.0.0",
+    "author":      "Romain Drouche",
+    "icon":        "🗂️",
+    "entry":       "admin-menu-organizer.php",
+    "min_version": "1.2.0"
+}

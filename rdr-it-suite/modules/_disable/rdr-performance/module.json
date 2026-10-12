@@ -1,0 +1,10 @@
+{
+  "slug":        "rdr-performance",
+  "name":        "Performance",
+  "description": "Optimisations de chargement : lazy-load, preload des polices, suppression des scripts inutiles en front.",
+  "version":     "1.0.0",
+  "author":      "Romain Drouche",
+  "icon":        "⚡",
+  "entry":       "rdr-performance.php",
+  "min_version": "1.0.0"
+}
